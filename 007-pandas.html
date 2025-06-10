@@ -1,0 +1,2502 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pandas &#8212; Quick and Dirty Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '007-pandas';</script>
+    <link rel="icon" href="_static/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Random numbers" href="009-random-numbers.html" />
+    <link rel="prev" title="Making plots" href="006-making-plots.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/hsf_logo_angled.png" class="logo__image only-light" alt="Quick and Dirty Python - Home"/>
+    <img src="_static/hsf_logo_angled.png" class="logo__image only-dark pst-js-only" alt="Quick and Dirty Python - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Python with Exercises
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="quick-python-reference.html">Quick Python Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="000-basic-syntax.html">Basic Syntax, Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="001-conditionals-and-loops.html">Conditionals and Iterating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="003-data-input-and-files.html">Data Input and Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="004-libraries.html">Python Libraries and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="005-numpy.html">Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="006-making-plots.html">Making plots</a></li>
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Pandas</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="009-random-numbers.html">Random numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="008-sorting.html">Sorting things</a></li>
+<li class="toctree-l2"><a class="reference internal" href="999-tips-and-tricks.html">Tips and Tricks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="basic_exercises.html">Basic Exercises</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="exercises/001-fizzbizz.html">001 - FizzBuzz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/002-common-list-elements.html">002 - Common list elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/003-fibonacci-sequence.html">003 - Fibonacci sequence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/004-palindrome-checker.html">004 - Palindrome checker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/005-rpn-calculator.html">005 - Reverse Polish Notation (RPN) Calculator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/006-factorial.html">006 - Factorial Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/007-largest-palindrome-product.html">007 - Largest Palindrome Product</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/008-dna-hamming-distance.html">008 - Counting Point Mutations</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="intermediate_exercises.html">Intermediate Exercises</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="exercises/101-ballistic-motion.html">101 - Ballistic Motion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/102-prime-numbers.html">102 - Prime Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/103-factorize-an-integer-number.html">103 - Factorize an Integer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/104-clock-hands.html">104 - Clock Hands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/105_hangman.html">105 - Hangman</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/106-madhava-leibniz-series.html">106 - Madhava-Leibniz series for <span class="math notranslate nohighlight">\(\pi\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/107-monte-carlo-calculate-pi.html">107 - Calculate <span class="math notranslate nohighlight">\(\pi\)</span> using Monte Carlo method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/108-analyze-text.html">108 - Analyze Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/109-bouncy-numbers.html">109 - Bouncy Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/110-tic-tac-toe.html">110 - TIC TAC TOE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/111-mandelbrot-set.html">111 - Mandelbrot Set</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="hackathon.html">Hackathon Exercises</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="exercises/201-coin-sums.html">201 - Coin Sums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/202-monte-carlo-death-star-borg.html">202 - Monte Carlo: Death Star and Borg Cube Accident</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/203-world-bank-data.html">203 - World Bank Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/204-basic-computer-games.html">204 - Basic Computer Games</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pelmer/jupyterbook-test" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pelmer/jupyterbook-test/issues/new?title=Issue%20on%20page%20%2F007-pandas.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/007-pandas.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pandas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Pandas</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-a-dataframe-and-display-it">Read in a dataframe and display it</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utility-functions-to-get-an-overview-of-the-data-in-the-dataframe">Utility functions to get an overview of the data in the dataframe</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subsets-of-a-dataframe">Subsets of a Dataframe</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#to-add-iloc-and-loc">TO ADD: iloc and loc</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-data-from-a-pandas-dataframe">Plotting data from a Pandas dataframe</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-and-modifying-dataframes">Creating and Modifying Dataframes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-understand-a-dataset-you-load-in-pandas">How to understand a dataset you load in Pandas</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pandas">
+<h1>Pandas<a class="headerlink" href="#pandas" title="Link to this heading">#</a></h1>
+<p>Pandas allows for the manipulation of tabular data (i.e. organized as rows and columns) in a data structure known as
+a <code class="docutils literal notranslate"><span class="pre">dataframe</span></code>. While you may at times need to create such a structure yourself, very often you will read in the
+data for the dataframe from a file such as a CSV file. (Many other file types are supported, such as Parquet, )</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="read-in-a-dataframe-and-display-it">
+<h2>Read in a dataframe and display it<a class="headerlink" href="#read-in-a-dataframe-and-display-it" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;assets/pandas-example.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>City</th>
+      <th>Birth Year</th>
+      <th>Favorite Color</th>
+      <th>Country of Birth</th>
+      <th>Profession</th>
+      <th>Hobbies</th>
+      <th>Pet</th>
+      <th>Height (cm)</th>
+      <th>Number of Siblings</th>
+      <th>Number of Children</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>New York</td>
+      <td>1990</td>
+      <td>Blue</td>
+      <td>USA</td>
+      <td>Software Engineer</td>
+      <td>Hiking</td>
+      <td>Dog</td>
+      <td>165</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>London</td>
+      <td>1985</td>
+      <td>Green</td>
+      <td>UK</td>
+      <td>Doctor</td>
+      <td>Reading</td>
+      <td>Cat</td>
+      <td>180</td>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Charlie</td>
+      <td>Paris</td>
+      <td>1992</td>
+      <td>Red</td>
+      <td>France</td>
+      <td>Artist</td>
+      <td>Painting</td>
+      <td>Fish</td>
+      <td>170</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>David</td>
+      <td>Tokyo</td>
+      <td>1988</td>
+      <td>Indigo</td>
+      <td>Japan</td>
+      <td>Chef</td>
+      <td>Cooking</td>
+      <td>Bird</td>
+      <td>175</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Eve</td>
+      <td>New York</td>
+      <td>1991</td>
+      <td>Violet</td>
+      <td>USA</td>
+      <td>Teacher</td>
+      <td>Gardening</td>
+      <td>NaN</td>
+      <td>160</td>
+      <td>3</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Frank</td>
+      <td>Berlin</td>
+      <td>1983</td>
+      <td>Orange</td>
+      <td>Germany</td>
+      <td>Musician</td>
+      <td>Playing Guitar</td>
+      <td>Dog</td>
+      <td>185</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Grace</td>
+      <td>London</td>
+      <td>1987</td>
+      <td>Yellow</td>
+      <td>UK</td>
+      <td>Journalist</td>
+      <td>Writing</td>
+      <td>Rabbit</td>
+      <td>168</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Heidi</td>
+      <td>Paris</td>
+      <td>1994</td>
+      <td>Blue</td>
+      <td>France</td>
+      <td>Student</td>
+      <td>Photography</td>
+      <td>NaN</td>
+      <td>163</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Ivan</td>
+      <td>New York</td>
+      <td>1980</td>
+      <td>Green</td>
+      <td>USA</td>
+      <td>Architect</td>
+      <td>Cycling</td>
+      <td>Cat</td>
+      <td>178</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Judy</td>
+      <td>Tokyo</td>
+      <td>1989</td>
+      <td>Red</td>
+      <td>Japan</td>
+      <td>Designer</td>
+      <td>Gaming</td>
+      <td>Hamster</td>
+      <td>166</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Kevin</td>
+      <td>Berlin</td>
+      <td>1993</td>
+      <td>Orange</td>
+      <td>Germany</td>
+      <td>Mechanic</td>
+      <td>Fixing Cars</td>
+      <td>NaN</td>
+      <td>182</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Liam</td>
+      <td>London</td>
+      <td>1986</td>
+      <td>Yellow</td>
+      <td>UK</td>
+      <td>Nurse</td>
+      <td>Running</td>
+      <td>Dog</td>
+      <td>172</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Mia</td>
+      <td>New York</td>
+      <td>1995</td>
+      <td>Green</td>
+      <td>USA</td>
+      <td>Dancer</td>
+      <td>Dancing</td>
+      <td>Cat</td>
+      <td>169</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Noah</td>
+      <td>Paris</td>
+      <td>1982</td>
+      <td>Blue</td>
+      <td>France</td>
+      <td>Writer</td>
+      <td>Traveling</td>
+      <td>Fish</td>
+      <td>176</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Olivia</td>
+      <td>Tokyo</td>
+      <td>1990</td>
+      <td>Indigo</td>
+      <td>Japan</td>
+      <td>Economist</td>
+      <td>Investing</td>
+      <td>Bird</td>
+      <td>164</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Peter</td>
+      <td>Berlin</td>
+      <td>1984</td>
+      <td>Violet</td>
+      <td>Germany</td>
+      <td>Electrician</td>
+      <td>Woodworking</td>
+      <td>NaN</td>
+      <td>187</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Quinn</td>
+      <td>London</td>
+      <td>1992</td>
+      <td>Red</td>
+      <td>UK</td>
+      <td>Veterinarian</td>
+      <td>Animal Care</td>
+      <td>Rabbit</td>
+      <td>171</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Rahul</td>
+      <td>Mumbai</td>
+      <td>1981</td>
+      <td>Orange</td>
+      <td>India</td>
+      <td>Engineer</td>
+      <td>Meditation</td>
+      <td>Dog</td>
+      <td>179</td>
+      <td>3</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Mei</td>
+      <td>Shanghai</td>
+      <td>1990</td>
+      <td>Yellow</td>
+      <td>China</td>
+      <td>Programmer</td>
+      <td>Calligraphy</td>
+      <td>Cat</td>
+      <td>162</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Sven</td>
+      <td>Stockholm</td>
+      <td>1987</td>
+      <td>Green</td>
+      <td>Sweden</td>
+      <td>Fisherman</td>
+      <td>Sailing</td>
+      <td>NaN</td>
+      <td>183</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Priya</td>
+      <td>Mumbai</td>
+      <td>1989</td>
+      <td>Blue</td>
+      <td>India</td>
+      <td>Accountant</td>
+      <td>Yoga</td>
+      <td>NaN</td>
+      <td>167</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Arjun</td>
+      <td>Mumbai</td>
+      <td>1993</td>
+      <td>Indigo</td>
+      <td>India</td>
+      <td>Marketing Manager</td>
+      <td>Cricket</td>
+      <td>Dog</td>
+      <td>174</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Giuseppe</td>
+      <td>Rome</td>
+      <td>1986</td>
+      <td>Violet</td>
+      <td>Italy</td>
+      <td>Waiter</td>
+      <td>Cooking</td>
+      <td>NaN</td>
+      <td>177</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="utility-functions-to-get-an-overview-of-the-data-in-the-dataframe">
+<h2>Utility functions to get an overview of the data in the dataframe<a class="headerlink" href="#utility-functions-to-get-an-overview-of-the-data-in-the-dataframe" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># default is first 5 lines if no value is provided</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>City</th>
+      <th>Birth Year</th>
+      <th>Favorite Color</th>
+      <th>Country of Birth</th>
+      <th>Profession</th>
+      <th>Hobbies</th>
+      <th>Pet</th>
+      <th>Height (cm)</th>
+      <th>Number of Siblings</th>
+      <th>Number of Children</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>New York</td>
+      <td>1990</td>
+      <td>Blue</td>
+      <td>USA</td>
+      <td>Software Engineer</td>
+      <td>Hiking</td>
+      <td>Dog</td>
+      <td>165</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>London</td>
+      <td>1985</td>
+      <td>Green</td>
+      <td>UK</td>
+      <td>Doctor</td>
+      <td>Reading</td>
+      <td>Cat</td>
+      <td>180</td>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Charlie</td>
+      <td>Paris</td>
+      <td>1992</td>
+      <td>Red</td>
+      <td>France</td>
+      <td>Artist</td>
+      <td>Painting</td>
+      <td>Fish</td>
+      <td>170</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="c1"># default is last 5 lines if no argument provided</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>City</th>
+      <th>Birth Year</th>
+      <th>Favorite Color</th>
+      <th>Country of Birth</th>
+      <th>Profession</th>
+      <th>Hobbies</th>
+      <th>Pet</th>
+      <th>Height (cm)</th>
+      <th>Number of Siblings</th>
+      <th>Number of Children</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>15</th>
+      <td>Peter</td>
+      <td>Berlin</td>
+      <td>1984</td>
+      <td>Violet</td>
+      <td>Germany</td>
+      <td>Electrician</td>
+      <td>Woodworking</td>
+      <td>NaN</td>
+      <td>187</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Quinn</td>
+      <td>London</td>
+      <td>1992</td>
+      <td>Red</td>
+      <td>UK</td>
+      <td>Veterinarian</td>
+      <td>Animal Care</td>
+      <td>Rabbit</td>
+      <td>171</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Rahul</td>
+      <td>Mumbai</td>
+      <td>1981</td>
+      <td>Orange</td>
+      <td>India</td>
+      <td>Engineer</td>
+      <td>Meditation</td>
+      <td>Dog</td>
+      <td>179</td>
+      <td>3</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Mei</td>
+      <td>Shanghai</td>
+      <td>1990</td>
+      <td>Yellow</td>
+      <td>China</td>
+      <td>Programmer</td>
+      <td>Calligraphy</td>
+      <td>Cat</td>
+      <td>162</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Sven</td>
+      <td>Stockholm</td>
+      <td>1987</td>
+      <td>Green</td>
+      <td>Sweden</td>
+      <td>Fisherman</td>
+      <td>Sailing</td>
+      <td>NaN</td>
+      <td>183</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Priya</td>
+      <td>Mumbai</td>
+      <td>1989</td>
+      <td>Blue</td>
+      <td>India</td>
+      <td>Accountant</td>
+      <td>Yoga</td>
+      <td>NaN</td>
+      <td>167</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Arjun</td>
+      <td>Mumbai</td>
+      <td>1993</td>
+      <td>Indigo</td>
+      <td>India</td>
+      <td>Marketing Manager</td>
+      <td>Cricket</td>
+      <td>Dog</td>
+      <td>174</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Giuseppe</td>
+      <td>Rome</td>
+      <td>1986</td>
+      <td>Violet</td>
+      <td>Italy</td>
+      <td>Waiter</td>
+      <td>Cooking</td>
+      <td>NaN</td>
+      <td>177</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>   <span class="c1"># an (iterable) object with a list of all of the column names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Name&#39;, &#39;City&#39;, &#39;Birth Year&#39;, &#39;Favorite Color&#39;, &#39;Country of Birth&#39;,
+       &#39;Profession&#39;, &#39;Hobbies&#39;, &#39;Pet&#39;, &#39;Height (cm)&#39;, &#39;Number of Siblings&#39;,
+       &#39;Number of Children&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name
+City
+Birth Year
+Favorite Color
+Country of Birth
+Profession
+Hobbies
+Pet
+Height (cm)
+Number of Siblings
+Number of Children
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 23 entries, 0 to 22
+Data columns (total 11 columns):
+ #   Column              Non-Null Count  Dtype 
+---  ------              --------------  ----- 
+ 0   Name                23 non-null     object
+ 1   City                23 non-null     object
+ 2   Birth Year          23 non-null     int64 
+ 3   Favorite Color      23 non-null     object
+ 4   Country of Birth    23 non-null     object
+ 5   Profession          23 non-null     object
+ 6   Hobbies             23 non-null     object
+ 7   Pet                 16 non-null     object
+ 8   Height (cm)         23 non-null     int64 
+ 9   Number of Siblings  23 non-null     int64 
+ 10  Number of Children  23 non-null     int64 
+dtypes: int64(4), object(7)
+memory usage: 2.1+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>   <span class="c1"># Shows number of rows and columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(23, 11)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>   <span class="c1"># Shows number of rows</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>23
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>  <span class="c1"># Provides statistical data for numeric columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Birth Year</th>
+      <th>Height (cm)</th>
+      <th>Number of Siblings</th>
+      <th>Number of Children</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>23.000000</td>
+      <td>23.000000</td>
+      <td>23.000000</td>
+      <td>23.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1988.130435</td>
+      <td>172.739130</td>
+      <td>1.086957</td>
+      <td>0.826087</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>4.256592</td>
+      <td>7.788204</td>
+      <td>0.949308</td>
+      <td>0.936734</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1980.000000</td>
+      <td>160.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1985.500000</td>
+      <td>166.500000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>1989.000000</td>
+      <td>172.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1991.500000</td>
+      <td>178.500000</td>
+      <td>2.000000</td>
+      <td>1.500000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1995.000000</td>
+      <td>187.000000</td>
+      <td>3.000000</td>
+      <td>3.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="subsets-of-a-dataframe">
+<h2>Subsets of a Dataframe<a class="headerlink" href="#subsets-of-a-dataframe" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select columns by name</span>
+<span class="n">selected_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span><span class="s1">&#39;Birth Year&#39;</span><span class="p">,</span><span class="s1">&#39;Country of Birth&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="n">selected_columns</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Birth Year</th>
+      <th>Country of Birth</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>1990</td>
+      <td>USA</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>1985</td>
+      <td>UK</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Charlie</td>
+      <td>1992</td>
+      <td>France</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>David</td>
+      <td>1988</td>
+      <td>Japan</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Eve</td>
+      <td>1991</td>
+      <td>USA</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select column names numerically with slicing syntax</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Name&#39;, &#39;City&#39;, &#39;Birth Year&#39;, &#39;Favorite Color&#39;, &#39;Country of Birth&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can then use that to select dataframe columns </span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>City</th>
+      <th>Birth Year</th>
+      <th>Favorite Color</th>
+      <th>Country of Birth</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>New York</td>
+      <td>1990</td>
+      <td>Blue</td>
+      <td>USA</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>London</td>
+      <td>1985</td>
+      <td>Green</td>
+      <td>UK</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Charlie</td>
+      <td>Paris</td>
+      <td>1992</td>
+      <td>Red</td>
+      <td>France</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>David</td>
+      <td>Tokyo</td>
+      <td>1988</td>
+      <td>Indigo</td>
+      <td>Japan</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Eve</td>
+      <td>New York</td>
+      <td>1991</td>
+      <td>Violet</td>
+      <td>USA</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># selects rows with slicing syntax</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>City</th>
+      <th>Birth Year</th>
+      <th>Favorite Color</th>
+      <th>Country of Birth</th>
+      <th>Profession</th>
+      <th>Hobbies</th>
+      <th>Pet</th>
+      <th>Height (cm)</th>
+      <th>Number of Siblings</th>
+      <th>Number of Children</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>New York</td>
+      <td>1990</td>
+      <td>Blue</td>
+      <td>USA</td>
+      <td>Software Engineer</td>
+      <td>Hiking</td>
+      <td>Dog</td>
+      <td>165</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>London</td>
+      <td>1985</td>
+      <td>Green</td>
+      <td>UK</td>
+      <td>Doctor</td>
+      <td>Reading</td>
+      <td>Cat</td>
+      <td>180</td>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Charlie</td>
+      <td>Paris</td>
+      <td>1992</td>
+      <td>Red</td>
+      <td>France</td>
+      <td>Artist</td>
+      <td>Painting</td>
+      <td>Fish</td>
+      <td>170</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Conditions return a series of Boolean values</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Birth Year&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1990</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     False
+1     False
+2      True
+3     False
+4      True
+5     False
+6     False
+7      True
+8     False
+9     False
+10     True
+11    False
+12     True
+13    False
+14    False
+15    False
+16     True
+17    False
+18    False
+19    False
+20    False
+21     True
+22    False
+Name: Birth Year, dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select based on a condition (the series from the conditional)</span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Birth Year&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1990</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>City</th>
+      <th>Birth Year</th>
+      <th>Favorite Color</th>
+      <th>Country of Birth</th>
+      <th>Profession</th>
+      <th>Hobbies</th>
+      <th>Pet</th>
+      <th>Height (cm)</th>
+      <th>Number of Siblings</th>
+      <th>Number of Children</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>Charlie</td>
+      <td>Paris</td>
+      <td>1992</td>
+      <td>Red</td>
+      <td>France</td>
+      <td>Artist</td>
+      <td>Painting</td>
+      <td>Fish</td>
+      <td>170</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Eve</td>
+      <td>New York</td>
+      <td>1991</td>
+      <td>Violet</td>
+      <td>USA</td>
+      <td>Teacher</td>
+      <td>Gardening</td>
+      <td>NaN</td>
+      <td>160</td>
+      <td>3</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Heidi</td>
+      <td>Paris</td>
+      <td>1994</td>
+      <td>Blue</td>
+      <td>France</td>
+      <td>Student</td>
+      <td>Photography</td>
+      <td>NaN</td>
+      <td>163</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Kevin</td>
+      <td>Berlin</td>
+      <td>1993</td>
+      <td>Orange</td>
+      <td>Germany</td>
+      <td>Mechanic</td>
+      <td>Fixing Cars</td>
+      <td>NaN</td>
+      <td>182</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Mia</td>
+      <td>New York</td>
+      <td>1995</td>
+      <td>Green</td>
+      <td>USA</td>
+      <td>Dancer</td>
+      <td>Dancing</td>
+      <td>Cat</td>
+      <td>169</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Quinn</td>
+      <td>London</td>
+      <td>1992</td>
+      <td>Red</td>
+      <td>UK</td>
+      <td>Veterinarian</td>
+      <td>Animal Care</td>
+      <td>Rabbit</td>
+      <td>171</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Arjun</td>
+      <td>Mumbai</td>
+      <td>1993</td>
+      <td>Indigo</td>
+      <td>India</td>
+      <td>Marketing Manager</td>
+      <td>Cricket</td>
+      <td>Dog</td>
+      <td>174</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>One can also select based on multiple conditions. Be careful to use <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> (element-wise “and”) and not <code class="docutils literal notranslate"><span class="pre">and</span></code>…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select based on condition</span>
+<span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Birth Year&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1990</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Favorite Color&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Red&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>City</th>
+      <th>Birth Year</th>
+      <th>Favorite Color</th>
+      <th>Country of Birth</th>
+      <th>Profession</th>
+      <th>Hobbies</th>
+      <th>Pet</th>
+      <th>Height (cm)</th>
+      <th>Number of Siblings</th>
+      <th>Number of Children</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>Charlie</td>
+      <td>Paris</td>
+      <td>1992</td>
+      <td>Red</td>
+      <td>France</td>
+      <td>Artist</td>
+      <td>Painting</td>
+      <td>Fish</td>
+      <td>170</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Quinn</td>
+      <td>London</td>
+      <td>1992</td>
+      <td>Red</td>
+      <td>UK</td>
+      <td>Veterinarian</td>
+      <td>Animal Care</td>
+      <td>Rabbit</td>
+      <td>171</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="to-add-iloc-and-loc">
+<h1>TO ADD: iloc and loc<a class="headerlink" href="#to-add-iloc-and-loc" title="Link to this heading">#</a></h1>
+<section id="plotting-data-from-a-pandas-dataframe">
+<h2>Plotting data from a Pandas dataframe<a class="headerlink" href="#plotting-data-from-a-pandas-dataframe" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plt.scatter(df[&#39;Birth Year&#39;],df[&#39;Number of Children&#39;])</span>
+<span class="c1">#plt.hist(df[&#39;Birth Year&#39;])</span>
+<span class="c1">###plt.hist(df[&#39;Favorite Color&#39;],bins=[&#39;Red&#39;, &#39;Orange&#39;, &#39;Yellow&#39;, &#39;Green&#39;, &#39;Blue&#39;, &#39;Indigo&#39;, &#39;Violet&#39;])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add a new column</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Height (m)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Height (cm)&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">100</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>City</th>
+      <th>Birth Year</th>
+      <th>Favorite Color</th>
+      <th>Country of Birth</th>
+      <th>Profession</th>
+      <th>Hobbies</th>
+      <th>Pet</th>
+      <th>Height (cm)</th>
+      <th>Number of Siblings</th>
+      <th>Number of Children</th>
+      <th>Height (m)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>New York</td>
+      <td>1990</td>
+      <td>Blue</td>
+      <td>USA</td>
+      <td>Software Engineer</td>
+      <td>Hiking</td>
+      <td>Dog</td>
+      <td>165</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1.65</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>London</td>
+      <td>1985</td>
+      <td>Green</td>
+      <td>UK</td>
+      <td>Doctor</td>
+      <td>Reading</td>
+      <td>Cat</td>
+      <td>180</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1.80</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Charlie</td>
+      <td>Paris</td>
+      <td>1992</td>
+      <td>Red</td>
+      <td>France</td>
+      <td>Artist</td>
+      <td>Painting</td>
+      <td>Fish</td>
+      <td>170</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.70</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>David</td>
+      <td>Tokyo</td>
+      <td>1988</td>
+      <td>Indigo</td>
+      <td>Japan</td>
+      <td>Chef</td>
+      <td>Cooking</td>
+      <td>Bird</td>
+      <td>175</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1.75</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Eve</td>
+      <td>New York</td>
+      <td>1991</td>
+      <td>Violet</td>
+      <td>USA</td>
+      <td>Teacher</td>
+      <td>Gardening</td>
+      <td>NaN</td>
+      <td>160</td>
+      <td>3</td>
+      <td>0</td>
+      <td>1.60</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Frank</td>
+      <td>Berlin</td>
+      <td>1983</td>
+      <td>Orange</td>
+      <td>Germany</td>
+      <td>Musician</td>
+      <td>Playing Guitar</td>
+      <td>Dog</td>
+      <td>185</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1.85</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Grace</td>
+      <td>London</td>
+      <td>1987</td>
+      <td>Yellow</td>
+      <td>UK</td>
+      <td>Journalist</td>
+      <td>Writing</td>
+      <td>Rabbit</td>
+      <td>168</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1.68</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Heidi</td>
+      <td>Paris</td>
+      <td>1994</td>
+      <td>Blue</td>
+      <td>France</td>
+      <td>Student</td>
+      <td>Photography</td>
+      <td>NaN</td>
+      <td>163</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1.63</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Ivan</td>
+      <td>New York</td>
+      <td>1980</td>
+      <td>Green</td>
+      <td>USA</td>
+      <td>Architect</td>
+      <td>Cycling</td>
+      <td>Cat</td>
+      <td>178</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1.78</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Judy</td>
+      <td>Tokyo</td>
+      <td>1989</td>
+      <td>Red</td>
+      <td>Japan</td>
+      <td>Designer</td>
+      <td>Gaming</td>
+      <td>Hamster</td>
+      <td>166</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1.66</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Kevin</td>
+      <td>Berlin</td>
+      <td>1993</td>
+      <td>Orange</td>
+      <td>Germany</td>
+      <td>Mechanic</td>
+      <td>Fixing Cars</td>
+      <td>NaN</td>
+      <td>182</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1.82</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Liam</td>
+      <td>London</td>
+      <td>1986</td>
+      <td>Yellow</td>
+      <td>UK</td>
+      <td>Nurse</td>
+      <td>Running</td>
+      <td>Dog</td>
+      <td>172</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1.72</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Mia</td>
+      <td>New York</td>
+      <td>1995</td>
+      <td>Green</td>
+      <td>USA</td>
+      <td>Dancer</td>
+      <td>Dancing</td>
+      <td>Cat</td>
+      <td>169</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.69</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Noah</td>
+      <td>Paris</td>
+      <td>1982</td>
+      <td>Blue</td>
+      <td>France</td>
+      <td>Writer</td>
+      <td>Traveling</td>
+      <td>Fish</td>
+      <td>176</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1.76</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Olivia</td>
+      <td>Tokyo</td>
+      <td>1990</td>
+      <td>Indigo</td>
+      <td>Japan</td>
+      <td>Economist</td>
+      <td>Investing</td>
+      <td>Bird</td>
+      <td>164</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1.64</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Peter</td>
+      <td>Berlin</td>
+      <td>1984</td>
+      <td>Violet</td>
+      <td>Germany</td>
+      <td>Electrician</td>
+      <td>Woodworking</td>
+      <td>NaN</td>
+      <td>187</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1.87</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Quinn</td>
+      <td>London</td>
+      <td>1992</td>
+      <td>Red</td>
+      <td>UK</td>
+      <td>Veterinarian</td>
+      <td>Animal Care</td>
+      <td>Rabbit</td>
+      <td>171</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1.71</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Rahul</td>
+      <td>Mumbai</td>
+      <td>1981</td>
+      <td>Orange</td>
+      <td>India</td>
+      <td>Engineer</td>
+      <td>Meditation</td>
+      <td>Dog</td>
+      <td>179</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1.79</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Mei</td>
+      <td>Shanghai</td>
+      <td>1990</td>
+      <td>Yellow</td>
+      <td>China</td>
+      <td>Programmer</td>
+      <td>Calligraphy</td>
+      <td>Cat</td>
+      <td>162</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1.62</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Sven</td>
+      <td>Stockholm</td>
+      <td>1987</td>
+      <td>Green</td>
+      <td>Sweden</td>
+      <td>Fisherman</td>
+      <td>Sailing</td>
+      <td>NaN</td>
+      <td>183</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1.83</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Priya</td>
+      <td>Mumbai</td>
+      <td>1989</td>
+      <td>Blue</td>
+      <td>India</td>
+      <td>Accountant</td>
+      <td>Yoga</td>
+      <td>NaN</td>
+      <td>167</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1.67</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Arjun</td>
+      <td>Mumbai</td>
+      <td>1993</td>
+      <td>Indigo</td>
+      <td>India</td>
+      <td>Marketing Manager</td>
+      <td>Cricket</td>
+      <td>Dog</td>
+      <td>174</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1.74</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Giuseppe</td>
+      <td>Rome</td>
+      <td>1986</td>
+      <td>Violet</td>
+      <td>Italy</td>
+      <td>Waiter</td>
+      <td>Cooking</td>
+      <td>NaN</td>
+      <td>177</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1.77</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make a copy of the dataframe with only selected columns -and- rename some columns</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span><span class="s1">&#39;City&#39;</span><span class="p">,</span><span class="s1">&#39;Height (m)&#39;</span><span class="p">,</span> <span class="s1">&#39;Birth Year&#39;</span><span class="p">]</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Birth Year&#39;</span><span class="p">:</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span><span class="s1">&#39;Height (m)&#39;</span><span class="p">:</span><span class="s1">&#39;Height&#39;</span><span class="p">})</span>
+<span class="n">df2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>City</th>
+      <th>Height</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>New York</td>
+      <td>1.65</td>
+      <td>1990</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>London</td>
+      <td>1.80</td>
+      <td>1985</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Charlie</td>
+      <td>Paris</td>
+      <td>1.70</td>
+      <td>1992</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>David</td>
+      <td>Tokyo</td>
+      <td>1.75</td>
+      <td>1988</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Eve</td>
+      <td>New York</td>
+      <td>1.60</td>
+      <td>1991</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Frank</td>
+      <td>Berlin</td>
+      <td>1.85</td>
+      <td>1983</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Grace</td>
+      <td>London</td>
+      <td>1.68</td>
+      <td>1987</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Heidi</td>
+      <td>Paris</td>
+      <td>1.63</td>
+      <td>1994</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Ivan</td>
+      <td>New York</td>
+      <td>1.78</td>
+      <td>1980</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Judy</td>
+      <td>Tokyo</td>
+      <td>1.66</td>
+      <td>1989</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Kevin</td>
+      <td>Berlin</td>
+      <td>1.82</td>
+      <td>1993</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Liam</td>
+      <td>London</td>
+      <td>1.72</td>
+      <td>1986</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Mia</td>
+      <td>New York</td>
+      <td>1.69</td>
+      <td>1995</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Noah</td>
+      <td>Paris</td>
+      <td>1.76</td>
+      <td>1982</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Olivia</td>
+      <td>Tokyo</td>
+      <td>1.64</td>
+      <td>1990</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Peter</td>
+      <td>Berlin</td>
+      <td>1.87</td>
+      <td>1984</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Quinn</td>
+      <td>London</td>
+      <td>1.71</td>
+      <td>1992</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Rahul</td>
+      <td>Mumbai</td>
+      <td>1.79</td>
+      <td>1981</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Mei</td>
+      <td>Shanghai</td>
+      <td>1.62</td>
+      <td>1990</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Sven</td>
+      <td>Stockholm</td>
+      <td>1.83</td>
+      <td>1987</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Priya</td>
+      <td>Mumbai</td>
+      <td>1.67</td>
+      <td>1989</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Arjun</td>
+      <td>Mumbai</td>
+      <td>1.74</td>
+      <td>1993</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Giuseppe</td>
+      <td>Rome</td>
+      <td>1.77</td>
+      <td>1986</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="creating-and-modifying-dataframes">
+<h2>Creating and Modifying Dataframes<a class="headerlink" href="#creating-and-modifying-dataframes" title="Link to this heading">#</a></h2>
+<p>You can create a dataframe from a dictionary of lists</p>
+</section>
+<section id="how-to-understand-a-dataset-you-load-in-pandas">
+<h2>How to understand a dataset you load in Pandas<a class="headerlink" href="#how-to-understand-a-dataset-you-load-in-pandas" title="Link to this heading">#</a></h2>
+<p>If you load a new (to you) dataset in Pandas, typically the useful things to do are:</p>
+<ul class="simple">
+<li><p>do df.head() to get a quick sense what is there</p></li>
+<li><p>understand what the rows are</p></li>
+<li><p>understand what columns are available (by column names or by separate documentation)</p>
+<ul>
+<li><p>df.columns and df.dtypes</p></li>
+</ul>
+</li>
+<li><p>drop any columns you do not need</p></li>
+<li><p>understand if the data is complete or if some elements are missing</p></li>
+<li><p>df[‘foo’].value_counts()</p></li>
+<li><p>df.isna().sum()</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="006-making-plots.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Making plots</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="009-random-numbers.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Random numbers</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Pandas</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-a-dataframe-and-display-it">Read in a dataframe and display it</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utility-functions-to-get-an-overview-of-the-data-in-the-dataframe">Utility functions to get an overview of the data in the dataframe</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subsets-of-a-dataframe">Subsets of a Dataframe</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#to-add-iloc-and-loc">TO ADD: iloc and loc</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-data-from-a-pandas-dataframe">Plotting data from a Pandas dataframe</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-and-modifying-dataframes">Creating and Modifying Dataframes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-understand-a-dataset-you-load-in-pandas">How to understand a dataset you load in Pandas</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Peter Elmer
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

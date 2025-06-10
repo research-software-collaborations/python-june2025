@@ -1,0 +1,925 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Data Input and Files &#8212; Quick and Dirty Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '003-data-input-and-files';</script>
+    <link rel="icon" href="_static/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Python Libraries and Modules" href="004-libraries.html" />
+    <link rel="prev" title="Conditionals and Iterating" href="001-conditionals-and-loops.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/hsf_logo_angled.png" class="logo__image only-light" alt="Quick and Dirty Python - Home"/>
+    <img src="_static/hsf_logo_angled.png" class="logo__image only-dark pst-js-only" alt="Quick and Dirty Python - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Python with Exercises
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="quick-python-reference.html">Quick Python Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="000-basic-syntax.html">Basic Syntax, Variables and Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="001-conditionals-and-loops.html">Conditionals and Iterating</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Data Input and Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="004-libraries.html">Python Libraries and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="005-numpy.html">Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="006-making-plots.html">Making plots</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="007-pandas.html">Pandas</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="009-random-numbers.html">Random numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="008-sorting.html">Sorting things</a></li>
+<li class="toctree-l2"><a class="reference internal" href="999-tips-and-tricks.html">Tips and Tricks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="basic_exercises.html">Basic Exercises</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="exercises/001-fizzbizz.html">001 - FizzBuzz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/002-common-list-elements.html">002 - Common list elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/003-fibonacci-sequence.html">003 - Fibonacci sequence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/004-palindrome-checker.html">004 - Palindrome checker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/005-rpn-calculator.html">005 - Reverse Polish Notation (RPN) Calculator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/006-factorial.html">006 - Factorial Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/007-largest-palindrome-product.html">007 - Largest Palindrome Product</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/008-dna-hamming-distance.html">008 - Counting Point Mutations</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="intermediate_exercises.html">Intermediate Exercises</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="exercises/101-ballistic-motion.html">101 - Ballistic Motion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/102-prime-numbers.html">102 - Prime Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/103-factorize-an-integer-number.html">103 - Factorize an Integer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/104-clock-hands.html">104 - Clock Hands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/105_hangman.html">105 - Hangman</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/106-madhava-leibniz-series.html">106 - Madhava-Leibniz series for <span class="math notranslate nohighlight">\(\pi\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/107-monte-carlo-calculate-pi.html">107 - Calculate <span class="math notranslate nohighlight">\(\pi\)</span> using Monte Carlo method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/108-analyze-text.html">108 - Analyze Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/109-bouncy-numbers.html">109 - Bouncy Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/110-tic-tac-toe.html">110 - TIC TAC TOE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/111-mandelbrot-set.html">111 - Mandelbrot Set</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="hackathon.html">Hackathon Exercises</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="exercises/201-coin-sums.html">201 - Coin Sums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/202-monte-carlo-death-star-borg.html">202 - Monte Carlo: Death Star and Borg Cube Accident</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/203-world-bank-data.html">203 - World Bank Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/204-basic-computer-games.html">204 - Basic Computer Games</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pelmer/jupyterbook-test" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pelmer/jupyterbook-test/issues/new?title=Issue%20on%20page%20%2F003-data-input-and-files.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/003-data-input-and-files.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Data Input and Files</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-from-the-keyboard">Input from the keyboard</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-text-files">(Structured) Text files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-files">CSV files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#yaml-files">YAML files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#json-file">JSON file</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-files">Binary files</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="data-input-and-files">
+<h1>Data Input and Files<a class="headerlink" href="#data-input-and-files" title="Link to this heading">#</a></h1>
+<p>Reading and writing files is critical for any problems you are trying to solve which involve data of some type (scientific, configuration, etc.)
+Fortunately Python is well supported with libraries to read and write a wide variety of data formats.</p>
+<section id="input-from-the-keyboard">
+<h2>Input from the keyboard<a class="headerlink" href="#input-from-the-keyboard" title="Link to this heading">#</a></h2>
+<p>You can get input from the keyboard with the input() function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">answer</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;What is your name?&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Hello </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s1">!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>What is your name? Santa Claus
+Hello Santa Claus!
+</pre></div>
+</div>
+</section>
+<section id="structured-text-files">
+<h2>(Structured) Text files<a class="headerlink" href="#structured-text-files" title="Link to this heading">#</a></h2>
+<p>Simple text files are useful and very common for small/medium-sized datasets, configuration files, etc. Text based formats can also easily be inspected via a text editor. Such files can be just raw text, or structured in some fashion like CSV, YAML or JSON. (HTML and CSS files on the web are also examples, but less useful as for data-science/scientific purposes).</p>
+<p>You can often find text files as the standard option for downloading data from various online databases, e.g.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.nsf.gov/awardsearch/advancedSearch.jsp">NSF Award database</a> - offers options to download as CSV files</p></li>
+<li><p><a class="reference external" href="https://www.hepdata.net">HEPData</a> - an online open access database of data associated with HEP publications, traditionally the data from plots and tables in CSV, JSON (and ROOT) formats, but also more recently from things like <a class="reference external" href="https://www.epj-conferences.org/articles/epjconf/abs/2020/21/epjconf_chep2020_06017/epjconf_chep2020_06017.html">likelihoods</a></p></li>
+</ul>
+<p>Opening such files is very simple in Python, either from the core language (simple text files) or via standard libraries (CSV, YAML, JSON). The standard
+way to do this is in Python is with the ‘with…as’ syntax, using a so-called
+“context manager”. The file will be opened and all of the associated indented code will be executed. You do <strong>not</strong> need to “close”
+the file as you may have done in other programming contexts. The “context manager” with do that automatically.</p>
+<p>Here we open a simple text file for writing with ‘w’. Alternatively we could open a file for ‘r’, but the more interesting cases for that are when one reads structured data (csv, yaml, json) as described below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;example.txt&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="csv-files">
+<h3>CSV files<a class="headerlink" href="#csv-files" title="Link to this heading">#</a></h3>
+<p>CSV files are very common in the data science world as a structured (text) data formats.</p>
+<p>The basic structure involves “rows” and “columns”, where each row represents an entry of interest and the corresponding columns contain different attributes associated with that entry. The first row is usually the “header” with labels for the columns and the first row sometimes contains an “index”.
+These can be opened an examined row by row. For example, a CSV (with a header, but no index) for the <a class="reference external" href="https://en.wikipedia.org/wiki/Seven_Dwarfs">Seven Dwarfs</a> would be:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat<span class="w"> </span>assets/seven_dwarfs.csv
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name,Hair Color,Beard,Height (cm)
+Doc,Gray,True,120
+Grumpy,White,True,118
+Happy,Brown,True,115
+Sleepy,Blonde,True,117
+Bashful,Black,True,116
+Sneezy,Red,True,114
+Dopey,Bald,False,113
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;assets/seven_dwarfs.csv&#39;</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+  <span class="n">csvFile</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">lines</span> <span class="ow">in</span> <span class="n">csvFile</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Name&#39;, &#39;Hair Color&#39;, &#39;Beard&#39;, &#39;Height (cm)&#39;]
+[&#39;Doc&#39;, &#39;Gray&#39;, &#39;True&#39;, &#39;120&#39;]
+[&#39;Grumpy&#39;, &#39;White&#39;, &#39;True&#39;, &#39;118&#39;]
+[&#39;Happy&#39;, &#39;Brown&#39;, &#39;True&#39;, &#39;115&#39;]
+[&#39;Sleepy&#39;, &#39;Blonde&#39;, &#39;True&#39;, &#39;117&#39;]
+[&#39;Bashful&#39;, &#39;Black&#39;, &#39;True&#39;, &#39;116&#39;]
+[&#39;Sneezy&#39;, &#39;Red&#39;, &#39;True&#39;, &#39;114&#39;]
+[&#39;Dopey&#39;, &#39;Bald&#39;, &#39;False&#39;, &#39;113&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>However the most common method for opening and accessing data from CSV files is via the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">Pandas library</a> into a Pandas dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;assets/seven_dwarfs.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Hair Color</th>
+      <th>Beard</th>
+      <th>Height (cm)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Doc</td>
+      <td>Gray</td>
+      <td>True</td>
+      <td>120</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Grumpy</td>
+      <td>White</td>
+      <td>True</td>
+      <td>118</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Happy</td>
+      <td>Brown</td>
+      <td>True</td>
+      <td>115</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Sleepy</td>
+      <td>Blonde</td>
+      <td>True</td>
+      <td>117</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Bashful</td>
+      <td>Black</td>
+      <td>True</td>
+      <td>116</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Sneezy</td>
+      <td>Red</td>
+      <td>True</td>
+      <td>114</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Dopey</td>
+      <td>Bald</td>
+      <td>False</td>
+      <td>113</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="yaml-files">
+<h3>YAML files<a class="headerlink" href="#yaml-files" title="Link to this heading">#</a></h3>
+<p>YAML files are simple structured data files, most often used to contain configuration information and/or web configuration (e.g. “frontmatter” in <a class="reference external" href="https://jekyllrb.com/docs/front-matter/">jekyll markdown files</a>). It is simple to use (read, write) for limited basic structured data, but should be avoided for
+complicated or large data structures.</p>
+<p>In the following example, the file will be loaded as a Python dict with just one key (“dwarfs”). That key accesses a list of dicts, one per dwarf.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat<span class="w"> </span>assets/seven_dwarfs.yml
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dwarfs:
+  - name: Doc
+    role: Leader
+    beard: true
+    height_cm: 120
+    favorite_color: blue
+
+  - name: Grumpy
+    role: Complainer
+    beard: true
+    height_cm: 118
+    favorite_color: red
+
+  - name: Happy
+    role: Cheerful
+    beard: true
+    height_cm: 115
+    favorite_color: yellow
+
+  - name: Sleepy
+    role: Tired
+    beard: true
+    height_cm: 117
+    favorite_color: gray
+
+  - name: Bashful
+    role: Shy
+    beard: true
+    height_cm: 116
+    favorite_color: pink
+
+  - name: Sneezy
+    role: Allergic
+    beard: true
+    height_cm: 114
+    favorite_color: green
+
+  - name: Dopey
+    role: Silent
+    beard: false
+    height_cm: 113
+    favorite_color: purple
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
+
+<span class="c1"># Load in the data</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;assets/seven_dwarfs.yml&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="c1"># Print something about each dwarf</span>
+<span class="k">for</span> <span class="n">dwarf</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;dwarfs&quot;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dwarf</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> is the </span><span class="si">{</span><span class="n">dwarf</span><span class="p">[</span><span class="s1">&#39;role&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> one.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Doc is the Leader one.
+Grumpy is the Complainer one.
+Happy is the Cheerful one.
+Sleepy is the Tired one.
+Bashful is the Shy one.
+Sneezy is the Allergic one.
+Dopey is the Silent one.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="json-file">
+<h3>JSON file<a class="headerlink" href="#json-file" title="Link to this heading">#</a></h3>
+<p>JSON (JavaScript Object Notation) files grew out of the need to exchange large amounts of data in a web (server, client/browser) environment. JSON files can handle jagged and/or varying length data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat<span class="w"> </span>assets/seven_dwarfs.json
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+  &quot;dwarfs&quot;: [
+    {
+      &quot;name&quot;: &quot;Doc&quot;,
+      &quot;role&quot;: &quot;Leader&quot;,
+      &quot;beard&quot;: true,
+      &quot;height_cm&quot;: 120,
+      &quot;favorite_color&quot;: &quot;blue&quot;
+    },
+    {
+      &quot;name&quot;: &quot;Grumpy&quot;,
+      &quot;role&quot;: &quot;Complainer&quot;,
+      &quot;beard&quot;: true,
+      &quot;height_cm&quot;: 118,
+      &quot;favorite_color&quot;: &quot;red&quot;
+    },
+    {
+      &quot;name&quot;: &quot;Happy&quot;,
+      &quot;role&quot;: &quot;Cheerful&quot;,
+      &quot;beard&quot;: true,
+      &quot;height_cm&quot;: 115,
+      &quot;favorite_color&quot;: &quot;yellow&quot;
+    },
+    {
+      &quot;name&quot;: &quot;Sleepy&quot;,
+      &quot;role&quot;: &quot;Tired&quot;,
+      &quot;beard&quot;: true,
+      &quot;height_cm&quot;: 117,
+      &quot;favorite_color&quot;: &quot;gray&quot;
+    },
+    {
+      &quot;name&quot;: &quot;Bashful&quot;,
+      &quot;role&quot;: &quot;Shy&quot;,
+      &quot;beard&quot;: true,
+      &quot;height_cm&quot;: 116,
+      &quot;favorite_color&quot;: &quot;pink&quot;
+    },
+    {
+      &quot;name&quot;: &quot;Sneezy&quot;,
+      &quot;role&quot;: &quot;Allergic&quot;,
+      &quot;beard&quot;: true,
+      &quot;height_cm&quot;: 114,
+      &quot;favorite_color&quot;: &quot;green&quot;
+    },
+    {
+      &quot;name&quot;: &quot;Dopey&quot;,
+      &quot;role&quot;: &quot;Silent&quot;,
+      &quot;beard&quot;: false,
+      &quot;height_cm&quot;: 113,
+      &quot;favorite_color&quot;: &quot;purple&quot;
+    }
+  ]
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="c1"># Load in the data</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;assets/seven_dwarfs.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># Print each dwarf&#39;s name</span>
+<span class="k">for</span> <span class="n">dwarf</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;dwarfs&quot;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">dwarf</span><span class="p">[</span><span class="s1">&#39;beard&#39;</span><span class="p">]):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">dwarf</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> has a beard&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">dwarf</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> does not have a beard&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Doc has a beard
+Grumpy has a beard
+Happy has a beard
+Sleepy has a beard
+Bashful has a beard
+Sneezy has a beard
+Dopey does not have a beard
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="binary-files">
+<h2>Binary files<a class="headerlink" href="#binary-files" title="Link to this heading">#</a></h2>
+<p>In data-intensive fields where data volumes can get large and I/O speed becomes important, text files are limiting and other formats are often used, such as (non-text) “binary” formats and various (sometimes customizable) data compression algorithms may be involved. Some examples include:</p>
+<ul class="simple">
+<li><p><strong>ROOT files</strong> - This is a very common format (from the <a class="reference external" href="https://root.cern">ROOT data analysis framework</a>) used widely in particle, nuclear and astroparticle physics. They can be opened and manipulated in Python using the <a class="reference external" href="https://uproot.readthedocs.io/en/stable/basic.html">uproot</a> library. Uproot is often used with <a class="reference external" href="https://awkward-array.org/doc/main/getting-started/index.html">Awkward Array</a> to read and access jagged arrays. We will be discussing uproot, ROOT files and Awkward Array in the other HEP-specific parts of this workshop.</p></li>
+<li><p><strong>Parquet files</strong> - as the larger data science community outgrew CSV files, they also needed a binary space-efficient data storage format. <a class="reference external" href="https://arrow.apache.org/docs/python/parquet.html">Apache Parquet</a> has been developed to fill that niche and is well integrated with (for example) Pandas.</p></li>
+<li><p><strong>HDF5 files</strong> - Hierarchical Data Format (HDF) files were originally developed with the high performance computing community (at NCSA) and the latest version, HDF5, has been adopted by a number of other scientific domains as well as garnered some <a class="reference external" href="https://www.hdfgroup.org/wp-content/uploads/2021/10/The-Story-of-HDF5-in-High-Energy-Physics.pdf">interest within the high energy physics community</a>. The <a class="reference external" href="https://docs.h5py.org/en/stable/">h5py package</a> provides a pythonic interface to HDF5 files.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="001-conditionals-and-loops.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Conditionals and Iterating</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="004-libraries.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Python Libraries and Modules</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-from-the-keyboard">Input from the keyboard</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-text-files">(Structured) Text files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-files">CSV files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#yaml-files">YAML files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#json-file">JSON file</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-files">Binary files</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Peter Elmer
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

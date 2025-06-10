@@ -1,0 +1,950 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Conditionals and Iterating &#8212; Quick and Dirty Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '001-conditionals-and-loops';</script>
+    <link rel="icon" href="_static/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Input and Files" href="003-data-input-and-files.html" />
+    <link rel="prev" title="Basic Syntax, Variables and Data Types" href="000-basic-syntax.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/hsf_logo_angled.png" class="logo__image only-light" alt="Quick and Dirty Python - Home"/>
+    <img src="_static/hsf_logo_angled.png" class="logo__image only-dark pst-js-only" alt="Quick and Dirty Python - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Python with Exercises
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="quick-python-reference.html">Quick Python Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="000-basic-syntax.html">Basic Syntax, Variables and Data Types</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Conditionals and Iterating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="003-data-input-and-files.html">Data Input and Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="004-libraries.html">Python Libraries and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="005-numpy.html">Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="006-making-plots.html">Making plots</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="007-pandas.html">Pandas</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="009-random-numbers.html">Random numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="008-sorting.html">Sorting things</a></li>
+<li class="toctree-l2"><a class="reference internal" href="999-tips-and-tricks.html">Tips and Tricks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="basic_exercises.html">Basic Exercises</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="exercises/001-fizzbizz.html">001 - FizzBuzz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/002-common-list-elements.html">002 - Common list elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/003-fibonacci-sequence.html">003 - Fibonacci sequence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/004-palindrome-checker.html">004 - Palindrome checker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/005-rpn-calculator.html">005 - Reverse Polish Notation (RPN) Calculator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/006-factorial.html">006 - Factorial Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/007-largest-palindrome-product.html">007 - Largest Palindrome Product</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/008-dna-hamming-distance.html">008 - Counting Point Mutations</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="intermediate_exercises.html">Intermediate Exercises</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="exercises/101-ballistic-motion.html">101 - Ballistic Motion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/102-prime-numbers.html">102 - Prime Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/103-factorize-an-integer-number.html">103 - Factorize an Integer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/104-clock-hands.html">104 - Clock Hands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/105_hangman.html">105 - Hangman</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/106-madhava-leibniz-series.html">106 - Madhava-Leibniz series for <span class="math notranslate nohighlight">\(\pi\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/107-monte-carlo-calculate-pi.html">107 - Calculate <span class="math notranslate nohighlight">\(\pi\)</span> using Monte Carlo method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/108-analyze-text.html">108 - Analyze Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/109-bouncy-numbers.html">109 - Bouncy Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/110-tic-tac-toe.html">110 - TIC TAC TOE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/111-mandelbrot-set.html">111 - Mandelbrot Set</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="hackathon.html">Hackathon Exercises</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="exercises/201-coin-sums.html">201 - Coin Sums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/202-monte-carlo-death-star-borg.html">202 - Monte Carlo: Death Star and Borg Cube Accident</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/203-world-bank-data.html">203 - World Bank Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/204-basic-computer-games.html">204 - Basic Computer Games</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pelmer/jupyterbook-test" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pelmer/jupyterbook-test/issues/new?title=Issue%20on%20page%20%2F001-conditionals-and-loops.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/001-conditionals-and-loops.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Conditionals and Iterating</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditions-with-if-elif-and-else">Conditions with <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code> and <code class="docutils literal notranslate"><span class="pre">else</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterating-over-things-with-for">Iterating over things with <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continue-executing-while-some-condition-is-true">Continue executing <code class="docutils literal notranslate"><span class="pre">while</span></code> some condition is true</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-many-matches-for-a-single-expression-with-match-case">Handling Many Matches for a Single Expression with <code class="docutils literal notranslate"><span class="pre">Match</span> <span class="pre">...</span> <span class="pre">Case</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops-involving-lists-and-dicts">Loops involving lists and dicts</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="conditionals-and-iterating">
+<h1>Conditionals and Iterating<a class="headerlink" href="#conditionals-and-iterating" title="Link to this heading">#</a></h1>
+<section id="conditions-with-if-elif-and-else">
+<h2>Conditions with <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code> and <code class="docutils literal notranslate"><span class="pre">else</span></code><a class="headerlink" href="#conditions-with-if-elif-and-else" title="Link to this heading">#</a></h2>
+<p>Often it is necessary to make decisions in a program based on whether some criteria is True or False. For this we can use comparison operators such as <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> (greater than), <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> (less than) and <code class="docutils literal notranslate"><span class="pre">==</span></code> (mean numerically identical). For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Gotcha!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also handle the case where the main condition was <em>not</em> satisified using the keyword <code class="docutils literal notranslate"><span class="pre">else</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Gotcha!&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Not Gotcha!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Not Gotcha!
+</pre></div>
+</div>
+</div>
+</div>
+<p>Multiple cases can also be handled using the keyword <code class="docutils literal notranslate"><span class="pre">elif</span></code>, meaning means “else if”:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Positive&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Negative&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Must be zero&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Negative
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span>
+<span class="k">if</span> <span class="s1">&#39;e&#39;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found an e&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="s1">&#39;l&#39;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found an l&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="s1">&#39;t&#39;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found an t&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cannot find any of my preferred letters e, l and t&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found an e
+</pre></div>
+</div>
+</div>
+</div>
+<p>And one can use multiple and more complicated boolean expressions in <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">...</span> <span class="pre">elif</span> <span class="pre">...</span></code> conditional blocks. You
+can use logical expressions involving <code class="docutils literal notranslate"><span class="pre">and</span></code> and <code class="docutils literal notranslate"><span class="pre">or</span></code> and parentheses to group them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">day_of_the_week</span> <span class="o">=</span> <span class="s1">&#39;Tuesday&#39;</span>
+<span class="n">color_of_the_car</span> <span class="o">=</span> <span class="s1">&#39;Red&#39;</span>
+<span class="n">slept_well</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;December&#39;</span>
+<span class="c1">#location = &#39;Chicago&#39;</span>
+<span class="n">location</span> <span class="o">=</span> <span class="s1">&#39;Mumbai&#39;</span>
+
+<span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="s1">&#39;December&#39;</span> <span class="ow">and</span> <span class="n">location</span> <span class="o">==</span> <span class="s1">&#39;Chicago&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hibernate!&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="p">(</span><span class="n">day_of_the_week</span> <span class="o">==</span> <span class="s1">&#39;Tuesday&#39;</span> <span class="ow">or</span> <span class="n">day_of_the_week</span> <span class="o">==</span> <span class="s1">&#39;Thursday&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">slept_well</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Run 5km today&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">day_of_the_week</span> <span class="o">==</span> <span class="s1">&#39;Friday&#39;</span> <span class="ow">and</span> <span class="n">color_of_the_car</span> <span class="o">==</span> <span class="s1">&#39;Red&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Little Red Corvette - escaping for the weekend!&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">day_of_the_week</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Monday&#39;</span><span class="p">,</span> <span class="s1">&#39;Wednesday&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Normal days, normal things...&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;It must be Sunday or I slept badly or my car broke down&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Run 5km today
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="iterating-over-things-with-for">
+<h2>Iterating over things with <code class="docutils literal notranslate"><span class="pre">for</span></code><a class="headerlink" href="#iterating-over-things-with-for" title="Link to this heading">#</a></h2>
+<p>Often in programming we want to do something for a large number of cases. A <code class="docutils literal notranslate"><span class="pre">for</span></code> loop is a (sequential) method to
+iterate over each of those cases, one after another. In the following we use the <code class="docutils literal notranslate"><span class="pre">range(5)</span></code> function, which will sequentially
+values in the order <code class="docutils literal notranslate"><span class="pre">[0,1,2,3,4]</span></code>. For each iteration of the loop, the variable <code class="docutils literal notranslate"><span class="pre">i</span></code> is set to the next value and the indented code is
+executed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+3
+4
+</pre></div>
+</div>
+</div>
+</div>
+<p>The function <code class="docutils literal notranslate"><span class="pre">range(start,stop,step)</span></code> offers more flexibility and we use it here to construct a list of integers <code class="docutils literal notranslate"><span class="pre">l</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+</pre></div>
+</div>
+</div>
+</div>
+<p>More complex things can be executed within the loop:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="k">3</span>==2):
+        <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[10, 40, 70]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We are not limited to looping on numeric values and in fact we can loop over elements of other data types such as lists.
+For each iteration of the loop we define a variable <code class="docutils literal notranslate"><span class="pre">flavor</span></code> which will be taken sequentially from the list of <code class="docutils literal notranslate"><span class="pre">flavors</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flavors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;vanilla&#39;</span><span class="p">,</span><span class="s1">&#39;mango&#39;</span><span class="p">,</span><span class="s1">&#39;pistachio&#39;</span><span class="p">,</span><span class="s1">&#39;strawberry&#39;</span><span class="p">,</span><span class="s1">&#39;chocolate&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">flavor</span> <span class="ow">in</span> <span class="n">flavors</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Flavor of the day is </span><span class="si">{</span><span class="n">flavor</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Flavor of the day is vanilla
+Flavor of the day is mango
+Flavor of the day is pistachio
+Flavor of the day is strawberry
+Flavor of the day is chocolate
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="continue-executing-while-some-condition-is-true">
+<h2>Continue executing <code class="docutils literal notranslate"><span class="pre">while</span></code> some condition is true<a class="headerlink" href="#continue-executing-while-some-condition-is-true" title="Link to this heading">#</a></h2>
+<p>In some cases one wants to execute repetitively a piece of code until some condition is true (where the code executed
+is affecting something relevant for the evaluation of the condition). While one can use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop when the condition
+is simple enough that the number of times to execute is known in advance, sometimes it isn’t clear in advance when the
+condition will become true. An example is when a calculation as part of each iteration (for which the answer is nominally not
+known in advance). This can be done using a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate when the last number &lt; 10000 when tripling each iteration</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">*=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+3
+9
+27
+81
+243
+729
+2187
+6561
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="handling-many-matches-for-a-single-expression-with-match-case">
+<h2>Handling Many Matches for a Single Expression with <code class="docutils literal notranslate"><span class="pre">Match</span> <span class="pre">...</span> <span class="pre">Case</span></code><a class="headerlink" href="#handling-many-matches-for-a-single-expression-with-match-case" title="Link to this heading">#</a></h2>
+<p>If you are just have a single expression (as opposed to multiple and varied boolean expressions) that you want to match against a
+series of patterns/options using <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">...</span> <span class="pre">elif</span> <span class="pre">...</span> <span class="pre">elif</span> <span class="pre">...</span> <span class="pre">elif</span> <span class="pre">...</span> <span class="pre">elif</span> <span class="pre">...</span></code> chain can be complicated. A more readable method is to use a
+<code class="docutils literal notranslate"><span class="pre">match</span> <span class="pre">case</span></code> statement.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;Alice&quot;</span><span class="p">:</span> <span class="s2">&quot;New York&quot;</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">:</span> <span class="s2">&quot;Bangalore&quot;</span><span class="p">,</span> <span class="s2">&quot;Charlie&quot;</span><span class="p">:</span> <span class="s2">&quot;Paris&quot;</span><span class="p">,</span> <span class="s2">&quot;David&quot;</span><span class="p">:</span> <span class="s2">&quot;Tokyo&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Eve&quot;</span><span class="p">:</span> <span class="s2">&quot;New York&quot;</span><span class="p">,</span> <span class="s2">&quot;Frank&quot;</span><span class="p">:</span> <span class="s2">&quot;Rome&quot;</span><span class="p">,</span> <span class="s2">&quot;Grace&quot;</span><span class="p">:</span> <span class="s2">&quot;Mumbai&quot;</span><span class="p">,</span> <span class="s2">&quot;Heidi&quot;</span><span class="p">:</span> <span class="s2">&quot;Paris&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Priya&quot;</span><span class="p">:</span> <span class="s2">&quot;Mumbai&quot;</span><span class="p">,</span> <span class="s2">&quot;Ivan&quot;</span><span class="p">:</span> <span class="s2">&quot;New York&quot;</span><span class="p">,</span> <span class="s2">&quot;Judy&quot;</span><span class="p">:</span> <span class="s2">&quot;Tokyo&quot;</span><span class="p">,</span> <span class="s2">&quot;Kevin&quot;</span><span class="p">:</span> <span class="s2">&quot;Berlin&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Liam&quot;</span><span class="p">:</span> <span class="s2">&quot;London&quot;</span><span class="p">,</span> <span class="s2">&quot;Mia&quot;</span><span class="p">:</span> <span class="s2">&quot;New York&quot;</span><span class="p">,</span> <span class="s2">&quot;Noah&quot;</span><span class="p">:</span> <span class="s2">&quot;Paris&quot;</span><span class="p">,</span> <span class="s2">&quot;Olivia&quot;</span><span class="p">:</span> <span class="s2">&quot;Tokyo&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Peter&quot;</span><span class="p">:</span> <span class="s2">&quot;Berlin&quot;</span><span class="p">,</span> <span class="s2">&quot;Quinn&quot;</span><span class="p">:</span> <span class="s2">&quot;London&quot;</span><span class="p">,</span> <span class="s2">&quot;Rahul&quot;</span><span class="p">:</span> <span class="s2">&quot;Mumbai&quot;</span><span class="p">,</span> <span class="s2">&quot;Mei&quot;</span><span class="p">:</span> <span class="s2">&quot;Shanghai&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Sven&quot;</span><span class="p">:</span> <span class="s2">&quot;Stockholm&quot;</span><span class="p">,</span> <span class="s2">&quot;Arjun&quot;</span><span class="p">:</span> <span class="s2">&quot;Paris&quot;</span><span class="p">,</span> <span class="s2">&quot;Giuseppe&quot;</span><span class="p">:</span> <span class="s2">&quot;Berlin&quot;</span> <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">berlin</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mumbai</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">paris</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">unknown</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">unknown_cities</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>  <span class="c1"># Use a set to get unique values</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">people</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">match</span> <span class="n">value</span><span class="p">:</span>
+        <span class="k">case</span> <span class="s1">&#39;Berlin&#39;</span><span class="p">:</span>
+            <span class="n">berlin</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s1">&#39;Mumbai&#39;</span><span class="p">:</span>
+            <span class="n">mumbai</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s1">&#39;Paris&#39;</span><span class="p">:</span>
+            <span class="n">paris</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>                     <span class="c1"># _ matches any value</span>
+            <span class="n">unknown</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="n">unknown_cities</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Inhabitants of Berlin: </span><span class="si">{</span><span class="n">berlin</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Inhabitants of Mumbai: </span><span class="si">{</span><span class="n">mumbai</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Inhabitants of Paris: </span><span class="si">{</span><span class="n">paris</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Inhabitants of other unknown cities: </span><span class="si">{</span><span class="n">unknown</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The unknown cities are: </span><span class="si">{</span><span class="n">unknown_cities</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inhabitants of Berlin: [&#39;Kevin&#39;, &#39;Peter&#39;, &#39;Giuseppe&#39;]
+Inhabitants of Mumbai: [&#39;Grace&#39;, &#39;Priya&#39;, &#39;Rahul&#39;]
+Inhabitants of Paris: [&#39;Charlie&#39;, &#39;Heidi&#39;, &#39;Noah&#39;, &#39;Arjun&#39;]
+Inhabitants of other unknown cities: [&#39;Alice&#39;, &#39;Bob&#39;, &#39;David&#39;, &#39;Eve&#39;, &#39;Frank&#39;, &#39;Ivan&#39;, &#39;Judy&#39;, &#39;Liam&#39;, &#39;Mia&#39;, &#39;Olivia&#39;, &#39;Quinn&#39;, &#39;Mei&#39;, &#39;Sven&#39;]
+The unknown cities are: {&#39;Rome&#39;, &#39;New York&#39;, &#39;Tokyo&#39;, &#39;Stockholm&#39;, &#39;Shanghai&#39;, &#39;London&#39;, &#39;Bangalore&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="loops-involving-lists-and-dicts">
+<h2>Loops involving lists and dicts<a class="headerlink" href="#loops-involving-lists-and-dicts" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hindi_numbers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ek&quot;</span><span class="p">,</span> <span class="s2">&quot;do&quot;</span><span class="p">,</span> <span class="s2">&quot;tīn&quot;</span><span class="p">,</span> <span class="s2">&quot;chār&quot;</span><span class="p">,</span> <span class="s2">&quot;pāñch&quot;</span><span class="p">,</span> <span class="s2">&quot;chhah&quot;</span><span class="p">,</span> <span class="s2">&quot;sāt&quot;</span><span class="p">,</span> <span class="s2">&quot;āṭh&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">hindi_numbers</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ek
+do
+tīn
+chār
+pāñch
+chhah
+sāt
+āṭh
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">hindi_numbers</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> is </span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ek is 1
+do is 2
+tīn is 3
+chār is 4
+pāñch is 5
+chhah is 6
+sāt is 7
+āṭh is 8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">greek_to_me</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;delta&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s1">&#39;epsilon&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s1">&#39;zeta&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="s1">&#39;eta&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="s1">&#39;theta&#39;</span><span class="p">:</span> <span class="mi">8</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">greek_to_me</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>alpha
+beta
+gamma
+delta
+epsilon
+zeta
+eta
+theta
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">greek_to_me</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">greek_to_me</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1"> has value </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>alpha has value 1
+beta has value 2
+gamma has value 3
+delta has value 4
+epsilon has value 5
+zeta has value 6
+eta has value 7
+theta has value 8
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="000-basic-syntax.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Basic Syntax, Variables and Data Types</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="003-data-input-and-files.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data Input and Files</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditions-with-if-elif-and-else">Conditions with <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code> and <code class="docutils literal notranslate"><span class="pre">else</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterating-over-things-with-for">Iterating over things with <code class="docutils literal notranslate"><span class="pre">for</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continue-executing-while-some-condition-is-true">Continue executing <code class="docutils literal notranslate"><span class="pre">while</span></code> some condition is true</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-many-matches-for-a-single-expression-with-match-case">Handling Many Matches for a Single Expression with <code class="docutils literal notranslate"><span class="pre">Match</span> <span class="pre">...</span> <span class="pre">Case</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops-involving-lists-and-dicts">Loops involving lists and dicts</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Peter Elmer
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
