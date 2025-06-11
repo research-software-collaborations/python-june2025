@@ -5,7 +5,7 @@ Write a function that checks if a given string is a palindrome. A palindrome is 
 ```python
 def is_palindrome(s):
     # implementation
-    return (True or False]
+    return [True or False]
 
 # Test cases
 print(is_palindrome("racecar"))  # Expected output: True
