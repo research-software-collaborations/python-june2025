@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -198,6 +198,27 @@
 <li class="toctree-l2"><a class="reference internal" href="exercises/006-factorial.html">006 - Factorial Function</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercises/007-largest-palindrome-product.html">007 - Largest Palindrome Product</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercises/008-dna-hamming-distance.html">008 - Counting Point Mutations</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="intermediate_exercises.html">Intermediate Exercises</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="exercises/101-ballistic-motion.html">101 - Ballistic Motion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/102-prime-numbers.html">102 - Prime Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/103-factorize-an-integer-number.html">103 - Factorize an Integer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/104-clock-hands.html">104 - Clock Hands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/105_hangman.html">105 - Hangman</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/106-madhava-leibniz-series.html">106 - Madhava-Leibniz series for <span class="math notranslate nohighlight">\(\pi\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/107-monte-carlo-calculate-pi.html">107 - Calculate <span class="math notranslate nohighlight">\(\pi\)</span> using Monte Carlo method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/108-analyze-text.html">108 - Analyze Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/109-bouncy-numbers.html">109 - Bouncy Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/110-tic-tac-toe.html">110 - TIC TAC TOE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/111-mandelbrot-set.html">111 - Mandelbrot Set</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="hackathon.html">Hackathon Exercises</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="exercises/201-coin-sums.html">201 - Coin Sums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/202-monte-carlo-death-star-borg.html">202 - Monte Carlo: Death Star and Borg Cube Accident</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/203-world-bank-data.html">203 - World Bank Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/204-basic-computer-games.html">204 - Basic Computer Games</a></li>
 </ul>
 </details></li>
 </ul>
@@ -392,8 +413,9 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skills-development-10-100-1000-10000-hours">Skills development: 10, 100, 1000, 10000 hours</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specific-course-goals">Specific course goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skills-development-10-100-1000-10000-hours">Skills development: 10, 100, 1000, 10000 hours</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-tips">Some tips:</a></li>
 </ul>
             </nav>
         </div>
@@ -407,9 +429,31 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="python-with-exercises">
 <h1>Python with Exercises<a class="headerlink" href="#python-with-exercises" title="Link to this heading">#</a></h1>
-<p>This course provides a (quick) introduction to python. We assume
+<p>This course provides a (quick) introduction to Python. We assume
 you have done at least a little programming, but are probably not
-doing it every day. The main focus is on exercises.</p>
+doing it every day.</p>
+<p>The primary focus here is on <em>exercises</em> rather than long lectures.
+You learn by doing. 80% of your time in this course should be spent
+either writing code or explaining your solutions to problems.</p>
+<section id="specific-course-goals">
+<h2>Specific course goals<a class="headerlink" href="#specific-course-goals" title="Link to this heading">#</a></h2>
+<p>By the end of this course:</p>
+<ul class="simple">
+<li><p>Given a problem, you should be able to open your laptop and within
+minutes be writing Python code to solve that problem.</p></li>
+<li><p>You will be familiar with all of the core Python language and
+a number of the most important Python ecosystem libraries.</p></li>
+<li><p>You will be familiar with JupyterLab and Jupyter notebooks.</p></li>
+<li><p>You should bet set up in GitHub and be familiar with creating and
+using repositories.</p></li>
+</ul>
+<!--
+  * You should have one or more environments set up to do scientific
+    programming in python.
+  * You should know how to evolve those environments to add new packages
+    you want to use and manage multiple environments.
+-->
+</section>
 <section id="skills-development-10-100-1000-10000-hours">
 <h2>Skills development: 10, 100, 1000, 10000 hours<a class="headerlink" href="#skills-development-10-100-1000-10000-hours" title="Link to this heading">#</a></h2>
 <p>In his book <a class="reference external" href="https://en.wikipedia.org/wiki/Outliers_(book)">Outliers</a>,
@@ -447,24 +491,12 @@ Python programmer and do many things to enable your scientific research.
 From there, if you remain open to learning and continue to use the
 skill you will naturally evolve into an expert.</p>
 </section>
-<section id="specific-course-goals">
-<h2>Specific course goals<a class="headerlink" href="#specific-course-goals" title="Link to this heading">#</a></h2>
-<p>By the end of this course:</p>
-<ul class="simple">
-<li><p>Given a problem, you should be able to open your laptop and within
-minutes be writing code to solve that problem.</p></li>
-<li><p>You should bet set up in GitHub and be familiar with creating and
-using repositories.</p></li>
-<li><p>You should have one or more environments set up to do scientific
-programming in python.</p></li>
-<li><p>You should know how to evolve those environments to add new packages
-you want to use and manage multiple environments.</p></li>
-</ul>
-<p>Some tips:</p>
+<section id="some-tips">
+<h2>Some tips:<a class="headerlink" href="#some-tips" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Remember at all times that actual coding is how you make progress, whether towards 100 hours or 10000 hours.</strong></p></li>
 <li><p>If you need to look up syntax or examples of something in the documentation, on the web or via ChatGPT or similar, do <strong>not</strong> simply cut and paste code from any of those places into your own code. Your goal at the moment is not to be “efficient”, it is to learn. (Re)typing the code yourself will force you to think through and understand the code in question.</p></li>
-<li><p>When in doubt as to how something behaves, don’t just look it up or ask ChatGPT. Try it! Play with code snippets and constructions.</p></li>
+<li><p>When in doubt as to how something behaves, don’t just look it up or ask ChatGPT. Try it! Play with code snippets and simplified code constructions. Use the integrated API help available in Jupyter.</p></li>
 </ul>
 </section>
 <div class="toctree-wrapper compound">
@@ -527,8 +559,9 @@ you want to use and manage multiple environments.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skills-development-10-100-1000-10000-hours">Skills development: 10, 100, 1000, 10000 hours</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specific-course-goals">Specific course goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skills-development-10-100-1000-10000-hours">Skills development: 10, 100, 1000, 10000 hours</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-tips">Some tips:</a></li>
 </ul>
   </nav></div>
 

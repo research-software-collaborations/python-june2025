@@ -24,6 +24,6 @@ For the purposes of the exercise you can assume that the geometry of the collisi
 Exercise 2: Some of you may be saying "Wait, you fool! The Borg Cube is larger than the Death Star!" I don't
 actually know which is larger in the respective science fiction literature, but let's pretend... So let's now 
 suppose that it was the Death Star that backed into the Borg Cube and left a spherical (Death Star) shaped 
-crushed in dent. What is volume left within the cube for the Borg Collective to use?
+crushed in dent. Make a diagram (as above) showing the geometry of the collision. What is volume left within the cube for the Borg Collective to use?
 
 ![Borg Death Star Dent](../assets/borg-death-star-dent-0.png)

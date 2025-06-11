@@ -1,8 +1,29 @@
 # Python with Exercises
 
-This course provides a (quick) introduction to python. We assume 
+This course provides a (quick) introduction to Python. We assume 
 you have done at least a little programming, but are probably not
-doing it every day. The main focus is on exercises.
+doing it every day. 
+
+The primary focus here is on *exercises* rather than long lectures.
+You learn by doing. 80% of your time in this course should be spent
+either writing code or explaining your solutions to problems.
+
+## Specific course goals
+
+By the end of this course:
+  * Given a problem, you should be able to open your laptop and within
+    minutes be writing Python code to solve that problem.
+  * You will be familiar with all of the core Python language and
+    a number of the most important Python ecosystem libraries.
+  * You will be familiar with JupyterLab and Jupyter notebooks.
+  * You should bet set up in GitHub and be familiar with creating and
+    using repositories.
+<!--
+  * You should have one or more environments set up to do scientific
+    programming in python.
+  * You should know how to evolve those environments to add new packages
+    you want to use and manage multiple environments.
+-->
 
 ## Skills development: 10, 100, 1000, 10000 hours 
 
@@ -44,20 +65,9 @@ Python programmer and do many things to enable your scientific research.
 From there, if you remain open to learning and continue to use the
 skill you will naturally evolve into an expert.
 
-## Specific course goals
+## Some tips:
 
-By the end of this course:
-  * Given a problem, you should be able to open your laptop and within
-    minutes be writing code to solve that problem.
-  * You should bet set up in GitHub and be familiar with creating and
-    using repositories.
-  * You should have one or more environments set up to do scientific
-    programming in python.
-  * You should know how to evolve those environments to add new packages
-    you want to use and manage multiple environments.
-
-Some tips:
   * **Remember at all times that actual coding is how you make progress, whether towards 100 hours or 10000 hours.**
   * If you need to look up syntax or examples of something in the documentation, on the web or via ChatGPT or similar, do **not** simply cut and paste code from any of those places into your own code. Your goal at the moment is not to be "efficient", it is to learn. (Re)typing the code yourself will force you to think through and understand the code in question.
-  * When in doubt as to how something behaves, don't just look it up or ask ChatGPT. Try it! Play with code snippets and constructions.
+  * When in doubt as to how something behaves, don't just look it up or ask ChatGPT. Try it! Play with code snippets and simplified code constructions. Use the integrated API help available in Jupyter.
 
