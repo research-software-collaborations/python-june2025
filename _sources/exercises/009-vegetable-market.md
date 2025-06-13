@@ -1,5 +1,7 @@
 # 009 - Vegetable Market
 
+![Vegetable Market](../assets/vegetable-market.jpg)
+
 You will now create a small program to simulate a vegetable market. We will build this up in step.
 
 ### Task 1:

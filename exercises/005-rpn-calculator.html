@@ -424,14 +424,14 @@ for full information on the syntax.</p>
 <ul class="simple">
 <li><p>Each time a number is entered, it is pushed onto a <a class="reference external" href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)"><strong>stack</strong></a></p></li>
 <li><p>The <strong>stack</strong> is an ordered set of numbers and it is managed as “Last In First Out” queue.</p></li>
-<li><p>If an operater is entered, such as {+,-,*,/} the last two numbers entered on the stack are removed and used as the operands for the operator. The result of that calculation is pushed onto the top of the stack.</p></li>
+<li><p>If an operator is entered, such as {+,-,*,/} the last two numbers entered on the stack are removed and used as the operands for the operator. The result of that calculation is pushed onto the top of the stack.</p></li>
 </ul>
 <p>For this exercise you should implement an RPN calculator in python which
 handles (at least) integer inputs and following single character commands:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">+</span></code> - Remove the top two values from the stack, add them and push that onto the stack</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">*</span></code> - Remove the top two values from the stack, multiply them and push that onto the stack</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-</span></code> - Remove the top two values from the stack, substract the latest one from the penultimate one and push the result onto the stack</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-</span></code> - Remove the top two values from the stack, subtract the latest one from the penultimate one and push the result onto the stack</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">\</span></code> - Remove the top two values from the stack, divide the penultimate one by the latest one and push the result onto the stack</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">f</span></code> - Print the entire stack</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">p</span></code> - Print the top element in the stack but leaves it on the stack (peek)</p></li>
