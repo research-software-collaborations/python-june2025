@@ -174,8 +174,9 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="quick-python-reference.html">Quick Python Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="000-basic-syntax.html">Basic Syntax, Variables and Data Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="001-conditionals-and-loops.html">Conditionals and Iterating</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="004-libraries.html">Functions, Libraries and Modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="003-data-input-and-files.html">Data Input and Files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="004-libraries.html">Python Libraries and Modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="005-numpy.html">Numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="006-making-plots.html">Making plots</a></li>
 
@@ -183,6 +184,7 @@
 
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Random numbers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="008-sorting.html">Sorting things</a></li>
+<li class="toctree-l2"><a class="reference internal" href="020-object-oriented-programming.html">Object Oriented Programming</a></li>
 <li class="toctree-l2"><a class="reference internal" href="999-tips-and-tricks.html">Tips and Tricks</a></li>
 </ul>
 </details></li>
@@ -195,6 +197,28 @@
 <li class="toctree-l2"><a class="reference internal" href="exercises/006-factorial.html">006 - Factorial Function</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercises/007-largest-palindrome-product.html">007 - Largest Palindrome Product</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercises/008-dna-hamming-distance.html">008 - Counting Point Mutations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/009-vegetable-market.html">009 - Vegetable Market</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="intermediate_exercises.html">Intermediate Exercises</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="exercises/101-ballistic-motion.html">101 - Ballistic Motion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/102-prime-numbers.html">102 - Prime Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/103-factorize-an-integer-number.html">103 - Factorize an Integer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/104-clock-hands.html">104 - Clock Hands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/105_hangman.html">105 - Hangman</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/106-madhava-leibniz-series.html">106 - Madhava-Leibniz series for <span class="math notranslate nohighlight">\(\pi\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/107-monte-carlo-calculate-pi.html">107 - Calculate <span class="math notranslate nohighlight">\(\pi\)</span> using Monte Carlo method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/108-analyze-text.html">108 - Analyze Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/109-bouncy-numbers.html">109 - Bouncy Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/110-tic-tac-toe.html">110 - TIC TAC TOE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/111-mandelbrot-set.html">111 - Mandelbrot Set</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="hackathon.html">Hackathon Exercises</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="exercises/201-coin-sums.html">201 - Coin Sums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/202-monte-carlo-death-star-borg.html">202 - Monte Carlo: Death Star and Borg Cube Accident</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/203-world-bank-data.html">203 - World Bank Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/204-basic-computer-games.html">204 - Basic Computer Games</a></li>
 </ul>
 </details></li>
 </ul>
@@ -432,26 +456,26 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
-4
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
 10
-1
-10
-8
 3
-7
-1
+5
 4
 3
-3
-8
 2
-6
-7
-3
-6
+9
+4
 8
 9
+2
+10
+6
+7
+10
+9
+5
+10
+1
 </pre></div>
 </div>
 </div>
@@ -464,26 +488,26 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.05862999147161263
-0.012369520691716596
-0.206566751490029
-0.7480182876117367
-0.7631840552364133
-0.6994741835050576
-0.9408588743429821
-0.6041892185801923
-0.7831841469425415
-0.3987391370563884
-0.6096485359593269
-0.6971472310741265
-0.29439761140059184
-0.5109371756313723
-0.7936157737364422
-0.26045776997068504
-0.8868150375046051
-0.9503929649260252
-0.11347381867629736
-0.49292538450393963
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9216978036427051
+0.3069385195415547
+0.7695232064421939
+0.6163569855957128
+0.6375194187458186
+0.03203559830457903
+0.5489946713761177
+0.16453313080560228
+0.30099027985496674
+0.8461402301310913
+0.8301491313668573
+0.7902631077549781
+0.4858783467802692
+0.43066121951041825
+0.7030199686279754
+0.18141772184447746
+0.02215368424476094
+0.9413531885737427
+0.38970110221850385
+0.9030723049434191
 </pre></div>
 </div>
 </div>
@@ -497,13 +521,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>paper
-rock
-scissors
-rock
-scissors
-scissors
-paper
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rock
 paper
 rock
 scissors
@@ -511,12 +529,18 @@ scissors
 scissors
 rock
 paper
+rock
+scissors
 paper
 rock
-paper
+scissors
 scissors
 paper
 paper
+paper
+paper
+paper
+rock
 </pre></div>
 </div>
 </div>
@@ -532,11 +556,11 @@ paper
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[5, 4, 0, 2, 3, 1, 6, 7, 9, 8]
-[9, 0, 1, 6, 2, 4, 5, 8, 7, 3]
-[9, 8, 1, 7, 0, 2, 3, 5, 6, 4]
-[3, 5, 7, 0, 4, 8, 9, 1, 2, 6]
-[8, 3, 7, 4, 1, 9, 6, 2, 0, 5]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4, 0, 2, 1, 6, 9, 5, 7, 8, 3]
+[1, 8, 7, 6, 5, 9, 0, 2, 4, 3]
+[2, 5, 1, 0, 3, 4, 7, 6, 9, 8]
+[8, 0, 5, 9, 1, 4, 6, 7, 2, 3]
+[8, 4, 3, 0, 2, 9, 6, 1, 5, 7]
 </pre></div>
 </div>
 </div>
@@ -575,7 +599,7 @@ paper
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
 </pre></div>
 </div>
 </div>
@@ -587,7 +611,7 @@ paper
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
 </pre></div>
 </div>
 </div>
@@ -617,8 +641,8 @@ this is array-oriented (as opposed to single valued as in the built-in random mo
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.31806637 0.95153297 0.3407025  0.81798938 0.23584092 0.5488992
- 0.56183278 0.90750685 0.9968857  0.68125843]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.92365467 0.04721359 0.99294187 0.27258226 0.57131645 0.22014321
+ 0.11510285 0.22641546 0.85366035 0.46073132]
 </pre></div>
 </div>
 </div>
@@ -630,7 +654,7 @@ this is array-oriented (as opposed to single valued as in the built-in random mo
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[5 2 5 6 3 5 2 4 4 5]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4 3 5 3 5 2 6 2 4 5]
 </pre></div>
 </div>
 </div>
@@ -642,8 +666,8 @@ this is array-oriented (as opposed to single valued as in the built-in random mo
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.94035613 -0.00269663 -0.42726553 -0.89510389  0.42841031  0.35840238
-  1.24952841 -0.13263636 -0.3071221  -1.312442  ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-1.17935007  0.41606967  0.01657328 -0.07801041  0.33334613  0.20053325
+ -0.26150875 -1.50872984  0.12371107  0.49488011]
 </pre></div>
 </div>
 </div>

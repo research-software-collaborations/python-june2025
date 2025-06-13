@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -177,8 +177,9 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="quick-python-reference.html">Quick Python Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="000-basic-syntax.html">Basic Syntax, Variables and Data Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="001-conditionals-and-loops.html">Conditionals and Iterating</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="004-libraries.html">Functions, Libraries and Modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="003-data-input-and-files.html">Data Input and Files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="004-libraries.html">Python Libraries and Modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="005-numpy.html">Numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="006-making-plots.html">Making plots</a></li>
 
@@ -186,6 +187,7 @@
 
 <li class="toctree-l2"><a class="reference internal" href="009-random-numbers.html">Random numbers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="008-sorting.html">Sorting things</a></li>
+<li class="toctree-l2"><a class="reference internal" href="020-object-oriented-programming.html">Object Oriented Programming</a></li>
 <li class="toctree-l2"><a class="reference internal" href="999-tips-and-tricks.html">Tips and Tricks</a></li>
 </ul>
 </details></li>
@@ -198,6 +200,7 @@
 <li class="toctree-l2"><a class="reference internal" href="exercises/006-factorial.html">006 - Factorial Function</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercises/007-largest-palindrome-product.html">007 - Largest Palindrome Product</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercises/008-dna-hamming-distance.html">008 - Counting Point Mutations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/009-vegetable-market.html">009 - Vegetable Market</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="intermediate_exercises.html">Intermediate Exercises</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -444,7 +447,7 @@ minutes be writing Python code to solve that problem.</p></li>
 <li><p>You will be familiar with all of the core Python language and
 a number of the most important Python ecosystem libraries.</p></li>
 <li><p>You will be familiar with JupyterLab and Jupyter notebooks.</p></li>
-<li><p>You should bet set up in GitHub and be familiar with creating and
+<li><p>You should be set up in GitHub and be familiar with creating and
 using repositories.</p></li>
 </ul>
 <!--
@@ -465,27 +468,26 @@ of this level!</p>
 <p>That said, most of us are not aiming to be the world’s leading
 expert for some specific given skill (e.g. chess grand master), but
 instead to be <em>competent</em> at a wide number of skills that taken
-together we need as part of our careers as scientists. An alternative
-and perhaps more appropriate goal is then the “100 hour rule”, which
+together we need as part of our careers as scientists.</p>
+<p>A more appropriate goal is perhaps the “100 hour rule”, which
 stipulates that with 100 hours of dedicated effort we can become
-“competent” at these skills. Here “competent” means that one is
-qualitatively and noticeably more skilled than a complete novice
-at the given skill. You should be comfortable enough with all of
-the basics that you can just “get to work”. You are <em>not</em> “expert”,
-but you know enough to begin to move in the space (here “Python
-programming”) and you can do useful things. Most importantly,
-it becomes much easier to autonomously incorporate new knowledge
+“competent” at these skills. You are <strong>-not-</strong> an “expert”, but
+qualitatively and noticeably more skilled than a complete novice.
+You are comfortable enough with all of the basics that you can just
+“get to work” and do useful things. Most importantly, it has
+become much easier to autonomously incorporate new knowledge
 piecemeal as you practice the skill.</p>
-<p>These 10,000 and 100 hour “rules” are clearly just figures of merit
-for the order of magnitude of effort required, but they do frame
-qualitative goals for us. What does 1000 hours then represent?
-All such things happen on a continuum and vary
-by the particular skill, so who really knows? But “100 hours”
-is both doable and you <em>will</em> be qualitatively in a different place
-in terms of your ability to actually use the skill.  So let’s aim
-for that!  The most important thing is to note that these rules are
-about <strong>active practice</strong>. You need to <em>exercise</em> the muscle to
-make it stronger.</p>
+<p>These “rules” are clearly just figures of merit (order of magnitude
+estimations) of effort required, but they do frame
+qualitative goals for us. (What does 1000 hours then represent?)
+All such things happen on a continuum and vary by the particular
+skill, so who really knows? But “100 hours” is both doable and
+you <em>will</em> be qualitatively in a different place in terms of your
+ability to actually use the skill.  So let’s aim for that!</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  The most important thing is to note that these rules are about 
+**active practice**. You need to *exercise* the muscle to make it stronger.
+</pre></div>
+</div>
 <p>This course aims to put you solidly on the road to being a <em>competent</em>
 Python programmer and do many things to enable your scientific research.
 From there, if you remain open to learning and continue to use the

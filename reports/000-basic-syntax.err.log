@@ -34,7 +34,7 @@ t1[2] = 7
 
 [31m---------------------------------------------------------------------------[39m
 [31mTypeError[39m                                 Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[23][39m[32m, line 1[39m
+[36mCell[39m[36m [39m[32mIn[24][39m[32m, line 1[39m
 [32m----> [39m[32m1[39m [43mt1[49m[43m[[49m[32;43m2[39;49m[43m][49m = [32m7[39m
 
 [31mTypeError[39m: 'tuple' object does not support item assignment
