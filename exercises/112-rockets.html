@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>110 - TIC TAC TOE &#8212; Quick and Dirty Python</title>
+    <title>112 - Rockets &#8212; Quick and Dirty Python</title>
   
   
   
@@ -60,13 +60,13 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'exercises/110-tic-tac-toe';</script>
-    <link rel="canonical" href="https://research-software-collaborations.org/python-june2025/exercises/110-tic-tac-toe.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'exercises/112-rockets';</script>
+    <link rel="canonical" href="https://research-software-collaborations.org/python-june2025/exercises/112-rockets.html" />
     <link rel="icon" href="../_static/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="111 - Mandelbrot Set" href="111-mandelbrot-set.html" />
-    <link rel="prev" title="109 - Bouncy Numbers" href="109-bouncy-numbers.html" />
+    <link rel="next" title="Hackathon Exercises" href="../hackathon.html" />
+    <link rel="prev" title="111 - Mandelbrot Set" href="111-mandelbrot-set.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -211,9 +211,9 @@
 <li class="toctree-l2"><a class="reference internal" href="107-monte-carlo-calculate-pi.html">107 - Calculate <span class="math notranslate nohighlight">\(\pi\)</span> using Monte Carlo method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="108-analyze-text.html">108 - Analyze Text</a></li>
 <li class="toctree-l2"><a class="reference internal" href="109-bouncy-numbers.html">109 - Bouncy Numbers</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">110 - TIC TAC TOE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="110-tic-tac-toe.html">110 - TIC TAC TOE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="111-mandelbrot-set.html">111 - Mandelbrot Set</a></li>
-<li class="toctree-l2"><a class="reference internal" href="112-rockets.html">112 - Rockets</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">112 - Rockets</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../hackathon.html">Hackathon Exercises</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -299,7 +299,7 @@
       
       
       
-      <li><a href="https://github.com/pelmer/jupyterbook-test/issues/new?title=Issue%20on%20page%20%2Fexercises/110-tic-tac-toe.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/pelmer/jupyterbook-test/issues/new?title=Issue%20on%20page%20%2Fexercises/112-rockets.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -329,7 +329,7 @@
       
       
       
-      <li><a href="../_sources/exercises/110-tic-tac-toe.md" target="_blank"
+      <li><a href="../_sources/exercises/112-rockets.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -403,7 +403,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>110 - TIC TAC TOE</h1>
+    <h1>112 - Rockets</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -417,10 +417,16 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="tic-tac-toe">
-<h1>110 - TIC TAC TOE<a class="headerlink" href="#tic-tac-toe" title="Link to this heading">#</a></h1>
-<p>Implement a python program to allow two players to play TIC TAC TOE.</p>
-<p>Wikipedia explanation: <a class="reference external" href="https://en.wikipedia.org/wiki/Tic-tac-toe">https://en.wikipedia.org/wiki/Tic-tac-toe</a></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="rockets">
+<h1>112 - Rockets<a class="headerlink" href="#rockets" title="Link to this heading">#</a></h1>
+<p>Load <a class="reference download internal" download="" href="../_downloads/c3eefed5ab265145839d2023db1dd351/rockets.csv"><span class="xref download myst">this CSV file with data on rockets</span></a> into a Pandas dataframe.
+Explore a bit the dataset:</p>
+<ul class="simple">
+<li><p>Make a (bar) plot showing the number of launches for each rocket</p></li>
+<li><p>Make a (bar) plot showing the max payload for each rocket</p></li>
+<li><p>Make the two bar plots where the bars are ordered from smallest to largest</p></li>
+<li><p>Make a histogram of the maximum payloads</p></li>
+</ul>
 </section>
 
     <script type="text/x-thebe-config">
@@ -454,20 +460,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="109-bouncy-numbers.html"
+       href="111-mandelbrot-set.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">109 - Bouncy Numbers</p>
+        <p class="prev-next-title">111 - Mandelbrot Set</p>
       </div>
     </a>
     <a class="right-next"
-       href="111-mandelbrot-set.html"
+       href="../hackathon.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">111 - Mandelbrot Set</p>
+        <p class="prev-next-title">Hackathon Exercises</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

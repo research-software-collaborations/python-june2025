@@ -198,6 +198,7 @@
 <li class="toctree-l2"><a class="reference internal" href="exercises/007-largest-palindrome-product.html">007 - Largest Palindrome Product</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercises/008-dna-hamming-distance.html">008 - Counting Point Mutations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercises/009-vegetable-market.html">009 - Vegetable Market</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/010-eu-country-quiz.html">010 - EU Country Quiz</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="intermediate_exercises.html">Intermediate Exercises</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -212,6 +213,7 @@
 <li class="toctree-l2"><a class="reference internal" href="exercises/109-bouncy-numbers.html">109 - Bouncy Numbers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercises/110-tic-tac-toe.html">110 - TIC TAC TOE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercises/111-mandelbrot-set.html">111 - Mandelbrot Set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises/112-rockets.html">112 - Rockets</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="hackathon.html">Hackathon Exercises</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -1152,6 +1154,8 @@ memory usage: 2.1+ KB
 </div>
 </div>
 </div>
+<p>Broadly speaking there are two types of data you may have in a Pandas dataframe: numerical data and “categorical data”. When understanding a dataset it is usually important to understand which columns fall into which categories and a quick overview of the range of both types in the data itself.</p>
+<p>Numerical data contains numbers, of course, both floating point and integer values. Quick statistics can be found using the <code class="docutils literal notranslate"><span class="pre">describe()</span></code> method, either on the whole dataframe or a given column:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>  <span class="c1"># Provides statistical data for numeric columns</span>
@@ -1239,6 +1243,334 @@ memory usage: 2.1+ KB
       <td>187.000000</td>
       <td>3.000000</td>
       <td>3.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Height (cm)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>  <span class="c1"># Provides statistical data for numeric columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count     23.000000
+mean     172.739130
+std        7.788204
+min      160.000000
+25%      166.500000
+50%      172.000000
+75%      178.500000
+max      187.000000
+Name: Height (cm), dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Numerical data is often explored using visualations/plots. We discuss some methods for that with Pandas below, but a more complete explanation can be found in the Matplotlib section.</p>
+<p>Categorical data usually consists of a set of unique values. These unique values
+be a known finite set (e.g. the two-letter abbreviations for the 50 states in
+the US) or could be in principle unbounded (e.g. names), although within a given
+dataset even things that are unbounded in principle will of course be a finite
+set of unique values.</p>
+<p>With the <code class="docutils literal notranslate"><span class="pre">unique()</span></code> function you get the set of values present in the dataset for a categorical variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Favorite Color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Blue&#39;, &#39;Green&#39;, &#39;Red&#39;, &#39;Indigo&#39;, &#39;Violet&#39;, &#39;Orange&#39;, &#39;Yellow&#39;],
+      dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<p>That set can naturally be stored in a list and used as part of the analysis:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Favorite Color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Blue&#39; &#39;Green&#39; &#39;Red&#39; &#39;Indigo&#39; &#39;Violet&#39; &#39;Orange&#39; &#39;Yellow&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also get information on how many each element in the categorical set are present in the data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Favorite Color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Favorite Color
+Blue      4
+Green     4
+Red       3
+Indigo    3
+Violet    3
+Orange    3
+Yellow    3
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Favorite Color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">dict</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Blue&#39;: np.int64(4),
+ &#39;Green&#39;: np.int64(4),
+ &#39;Red&#39;: np.int64(3),
+ &#39;Indigo&#39;: np.int64(3),
+ &#39;Violet&#39;: np.int64(3),
+ &#39;Orange&#39;: np.int64(3),
+ &#39;Yellow&#39;: np.int64(3)}
+</pre></div>
+</div>
+</div>
+</div>
+<p>One can also identify situations where no value (NaN) is provided. This is normal in many cases (e.g. some people don’t have pets), but in others may just represent missing data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Dog&#39;, &#39;Cat&#39;, &#39;Fish&#39;, &#39;Bird&#39;, nan, &#39;Rabbit&#39;, &#39;Hamster&#39;],
+      dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>  <span class="c1"># counts for non-NaN values</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pet
+Dog        5
+Cat        4
+Fish       2
+Bird       2
+Rabbit     2
+Hamster    1
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>  <span class="c1"># Get number of NaN values in the column</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(7)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;There are </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s1"> people with pets out of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s1"> total people, thus </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s1"> have no pet.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>There are 16 people with pets out of 23 total people, thus 7 have no pet.
+</pre></div>
+</div>
+</div>
+</div>
+<p>And you can dig in further to see which rows have no pet:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="c1"># Returns True or False for each row if the value is NaN</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     False
+1     False
+2     False
+3     False
+4      True
+5     False
+6     False
+7      True
+8     False
+9     False
+10     True
+11    False
+12    False
+13    False
+14    False
+15     True
+16    False
+17    False
+18    False
+19     True
+20     True
+21    False
+22     True
+Name: Pet, dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>City</th>
+      <th>Birth Year</th>
+      <th>Favorite Color</th>
+      <th>Country of Birth</th>
+      <th>Profession</th>
+      <th>Hobbies</th>
+      <th>Pet</th>
+      <th>Height (cm)</th>
+      <th>Number of Siblings</th>
+      <th>Number of Children</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4</th>
+      <td>Eve</td>
+      <td>New York</td>
+      <td>1991</td>
+      <td>Violet</td>
+      <td>USA</td>
+      <td>Teacher</td>
+      <td>Gardening</td>
+      <td>NaN</td>
+      <td>160</td>
+      <td>3</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Heidi</td>
+      <td>Paris</td>
+      <td>1994</td>
+      <td>Blue</td>
+      <td>France</td>
+      <td>Student</td>
+      <td>Photography</td>
+      <td>NaN</td>
+      <td>163</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Kevin</td>
+      <td>Berlin</td>
+      <td>1993</td>
+      <td>Orange</td>
+      <td>Germany</td>
+      <td>Mechanic</td>
+      <td>Fixing Cars</td>
+      <td>NaN</td>
+      <td>182</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Peter</td>
+      <td>Berlin</td>
+      <td>1984</td>
+      <td>Violet</td>
+      <td>Germany</td>
+      <td>Electrician</td>
+      <td>Woodworking</td>
+      <td>NaN</td>
+      <td>187</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Sven</td>
+      <td>Stockholm</td>
+      <td>1987</td>
+      <td>Green</td>
+      <td>Sweden</td>
+      <td>Fisherman</td>
+      <td>Sailing</td>
+      <td>NaN</td>
+      <td>183</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Priya</td>
+      <td>Mumbai</td>
+      <td>1989</td>
+      <td>Blue</td>
+      <td>India</td>
+      <td>Accountant</td>
+      <td>Yoga</td>
+      <td>NaN</td>
+      <td>167</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Giuseppe</td>
+      <td>Rome</td>
+      <td>1986</td>
+      <td>Violet</td>
+      <td>Italy</td>
+      <td>Waiter</td>
+      <td>Cooking</td>
+      <td>NaN</td>
+      <td>177</td>
+      <td>0</td>
+      <td>1</td>
     </tr>
   </tbody>
 </table>
@@ -2350,23 +2682,276 @@ Name: Birth Year, dtype: bool
 </section>
 <section id="creating-and-modifying-dataframes">
 <h2>Creating and Modifying Dataframes<a class="headerlink" href="#creating-and-modifying-dataframes" title="Link to this heading">#</a></h2>
-<p>You can create a dataframe from a dictionary of lists</p>
+<p>For the most part you will usually load data from files in various formats, but you can create a dataframe from a dictionary of lists:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Name&#39;</span><span class="p">:[</span><span class="s1">&#39;Jon&#39;</span><span class="p">,</span> <span class="s1">&#39;Janie&#39;</span><span class="p">,</span> <span class="s1">&#39;Jack&#39;</span><span class="p">,</span> <span class="s1">&#39;Jasmine&#39;</span><span class="p">],</span> 
+        <span class="s1">&#39;Age&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">96</span><span class="p">,</span> <span class="mi">128</span><span class="p">],</span> 
+        <span class="s1">&#39;Job&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Tinker&#39;</span><span class="p">,</span> <span class="s1">&#39;Tailor&#39;</span><span class="p">,</span> <span class="s1">&#39;Solider&#39;</span><span class="p">,</span> <span class="s1">&#39;Spy&#39;</span><span class="p">],</span> 
+        <span class="s1">&#39;Shoes&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">],</span> 
+        <span class="s1">&#39;City&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Mumbai&#39;</span><span class="p">,</span> <span class="s1">&#39;Dallas&#39;</span><span class="p">,</span> <span class="s1">&#39;Kuala Lumpur&#39;</span><span class="p">,</span> <span class="s1">&#39;Buenos Aires&#39;</span><span class="p">]}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Job</th>
+      <th>Shoes</th>
+      <th>City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Jon</td>
+      <td>32</td>
+      <td>Tinker</td>
+      <td>2</td>
+      <td>Mumbai</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Janie</td>
+      <td>64</td>
+      <td>Tailor</td>
+      <td>5</td>
+      <td>Dallas</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Jack</td>
+      <td>96</td>
+      <td>Solider</td>
+      <td>10</td>
+      <td>Kuala Lumpur</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Jasmine</td>
+      <td>128</td>
+      <td>Spy</td>
+      <td>15</td>
+      <td>Buenos Aires</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>And you can add columns. These can be calculated from existing columns or in principle based on lookup for other data sources (e.g. if you had some other lookup table or dataframe with related data):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Shoes Per Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Shoes&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Job</th>
+      <th>Shoes</th>
+      <th>City</th>
+      <th>Shoes Per Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Jon</td>
+      <td>32</td>
+      <td>Tinker</td>
+      <td>2</td>
+      <td>Mumbai</td>
+      <td>0.062500</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Janie</td>
+      <td>64</td>
+      <td>Tailor</td>
+      <td>5</td>
+      <td>Dallas</td>
+      <td>0.078125</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Jack</td>
+      <td>96</td>
+      <td>Solider</td>
+      <td>10</td>
+      <td>Kuala Lumpur</td>
+      <td>0.104167</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Jasmine</td>
+      <td>128</td>
+      <td>Spy</td>
+      <td>15</td>
+      <td>Buenos Aires</td>
+      <td>0.117188</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Here to add a new column we use an “external” datasource and the <code class="docutils literal notranslate"><span class="pre">map()</span></code> function which does an elementwise lookup in the provided dict:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For example, maybe some other data source provides population (in millions) for cities:</span>
+<span class="n">city_populations</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Berlin&quot;</span><span class="p">:</span> <span class="mf">3.6</span><span class="p">,</span>
+    <span class="s2">&quot;Dallas&quot;</span><span class="p">:</span> <span class="mf">1.3</span><span class="p">,</span>
+    <span class="s2">&quot;Kuala Lumpur&quot;</span><span class="p">:</span> <span class="mf">1.8</span><span class="p">,</span>
+    <span class="s2">&quot;Tokyo&quot;</span><span class="p">:</span> <span class="mf">37.4</span><span class="p">,</span>
+    <span class="s2">&quot;Mumbai&quot;</span><span class="p">:</span> <span class="mf">20.7</span><span class="p">,</span>
+    <span class="s2">&quot;Nairobi&quot;</span><span class="p">:</span> <span class="mf">4.4</span><span class="p">,</span>
+    <span class="s2">&quot;São Paulo&quot;</span><span class="p">:</span> <span class="mf">22.4</span><span class="p">,</span>
+    <span class="s2">&quot;Buenos Aires&quot;</span><span class="p">:</span> <span class="mf">15.5</span>
+<span class="p">}</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Population&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;City&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">city_populations</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Job</th>
+      <th>Shoes</th>
+      <th>City</th>
+      <th>Shoes Per Year</th>
+      <th>Population</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Jon</td>
+      <td>32</td>
+      <td>Tinker</td>
+      <td>2</td>
+      <td>Mumbai</td>
+      <td>0.062500</td>
+      <td>20.7</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Janie</td>
+      <td>64</td>
+      <td>Tailor</td>
+      <td>5</td>
+      <td>Dallas</td>
+      <td>0.078125</td>
+      <td>1.3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Jack</td>
+      <td>96</td>
+      <td>Solider</td>
+      <td>10</td>
+      <td>Kuala Lumpur</td>
+      <td>0.104167</td>
+      <td>1.8</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Jasmine</td>
+      <td>128</td>
+      <td>Spy</td>
+      <td>15</td>
+      <td>Buenos Aires</td>
+      <td>0.117188</td>
+      <td>15.5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
 </section>
 <section id="how-to-understand-a-dataset-you-load-in-pandas">
 <h2>How to understand a dataset you load in Pandas<a class="headerlink" href="#how-to-understand-a-dataset-you-load-in-pandas" title="Link to this heading">#</a></h2>
 <p>If you load a new (to you) dataset in Pandas, typically the useful things to do are:</p>
 <ul class="simple">
-<li><p>do df.head() to get a quick sense what is there</p></li>
-<li><p>understand what the rows are</p></li>
-<li><p>understand what columns are available (by column names or by separate documentation)</p>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">df.head()</span></code> to get a quick sense what is there</p></li>
+<li><p>Understand what the rows are</p></li>
+<li><p>Understand what columns are available (by column names or by separate documentation)</p>
 <ul>
-<li><p>df.columns and df.dtypes</p></li>
+<li><p>Functions like df.columns and df.dtypes</p></li>
+<li><p>Understand which columns are numerical data and which are categorical data</p></li>
 </ul>
 </li>
-<li><p>drop any columns you do not need</p></li>
-<li><p>understand if the data is complete or if some elements are missing</p></li>
-<li><p>df[‘foo’].value_counts()</p></li>
-<li><p>df.isna().sum()</p></li>
+<li><p>Drop any columns you do not need</p></li>
+<li><p>Understand the range of data in the different columns</p>
+<ul>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">df.describe()</span></code> and plotting for numerical data</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">.value_counts()</span></code> and <code class="docutils literal notranslate"><span class="pre">unique()</span></code> for categorical data</p></li>
+</ul>
+</li>
+<li><p>Understand if the data is complete or if some elements are missing</p>
+<ul>
+<li><p>Use functions like ``df[‘foo’].value_counts(), df.isna().sum() for c</p></li>
+<li></li>
+</ul>
+</li>
 </ul>
 </section>
 </section>
