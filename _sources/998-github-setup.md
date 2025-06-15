@@ -1,7 +1,6 @@
 # GitHub Setup
 
-  * On your GitHub main page, click on the "Repositories" link at the top of 
-the page::
+  * On your GitHub main page (e.g. "https://github.com/pelmer/" rather than "https://github.com/"), click on the "Repositories" link at the top of the page::
 
 ![GitHub 1](assets/github-0.png)
 
