@@ -75,8 +75,8 @@ git push
 ```
 
 Again change the parts in all capital letters to match what you are doing.
-If you have changed more than one file, you can also ``git add`` all of 
-those together and then just do a single commit and push:
+If you have changed more than one file, you can also ``git add`` more than
+one file and then just do a single commit and push:
 
 ```
 git add FILENAME1
@@ -86,6 +86,14 @@ git commit -m "CHANGED SEVERAL THINGS"
 git push
 ```
 
+And lastly if you want to just add all files that have been changed in your
+local copy of the Git repo, you can do:
+
+```
+git add .
+git commit -m "CHANGED SEVERAL THINGS"
+git push
+```
 
 
 ## Further Information
