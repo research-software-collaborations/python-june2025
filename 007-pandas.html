@@ -181,7 +181,6 @@
 <li class="toctree-l2"><a class="reference internal" href="006-making-plots.html">Making plots</a></li>
 
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Pandas</a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="009-random-numbers.html">Random numbers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="008-sorting.html">Sorting things</a></li>
 <li class="toctree-l2"><a class="reference internal" href="999-tips-and-tricks.html">Tips and Tricks</a></li>
@@ -215,8 +214,11 @@
 <li class="toctree-l2"><a class="reference internal" href="exercises/112-rockets.html">112 - Rockets</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="990-github-setup.html">GitHub Setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="991-github-use.html">Using Git and Github</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="practical-information.html">Practical Information</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="990-github-setup.html">GitHub Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="991-github-use.html">Using Git and Github</a></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -409,20 +411,14 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Pandas</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-a-dataframe-and-display-it">Read in a dataframe and display it</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utility-functions-to-get-an-overview-of-the-data-in-the-dataframe">Utility functions to get an overview of the data in the dataframe</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subsets-of-a-dataframe">Subsets of a Dataframe</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#to-add-iloc-and-loc">TO ADD: iloc and loc</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-specific-dataframe-parts-iloc-and-loc">Accessing specific dataframe parts - iloc and loc</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-data-from-a-pandas-dataframe">Plotting data from a Pandas dataframe</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-and-modifying-dataframes">Creating and Modifying Dataframes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-understand-a-dataset-you-load-in-pandas">How to understand a dataset you load in Pandas</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -2068,9 +2064,172 @@ Name: Birth Year, dtype: bool
 </div></div></div>
 </div>
 </section>
+<section id="accessing-specific-dataframe-parts-iloc-and-loc">
+<h2>Accessing specific dataframe parts - iloc and loc<a class="headerlink" href="#accessing-specific-dataframe-parts-iloc-and-loc" title="Link to this heading">#</a></h2>
+<p>Sometimes it is necessary to access specific rows, columns and entries. This can be done using the <code class="docutils literal notranslate"><span class="pre">iloc</span></code> and <code class="docutils literal notranslate"><span class="pre">loc</span></code> functions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">12</span><span class="p">:</span><span class="mi">15</span><span class="p">]</span>  <span class="c1"># Gets rows from 12 up to (but not including) 15</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>City</th>
+      <th>Birth Year</th>
+      <th>Favorite Color</th>
+      <th>Country of Birth</th>
+      <th>Profession</th>
+      <th>Hobbies</th>
+      <th>Pet</th>
+      <th>Height (cm)</th>
+      <th>Number of Siblings</th>
+      <th>Number of Children</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12</th>
+      <td>Mia</td>
+      <td>New York</td>
+      <td>1995</td>
+      <td>Green</td>
+      <td>USA</td>
+      <td>Dancer</td>
+      <td>Dancing</td>
+      <td>Cat</td>
+      <td>169</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Noah</td>
+      <td>Paris</td>
+      <td>1982</td>
+      <td>Blue</td>
+      <td>France</td>
+      <td>Writer</td>
+      <td>Traveling</td>
+      <td>Fish</td>
+      <td>176</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Olivia</td>
+      <td>Tokyo</td>
+      <td>1990</td>
+      <td>Indigo</td>
+      <td>Japan</td>
+      <td>Economist</td>
+      <td>Investing</td>
+      <td>Bird</td>
+      <td>164</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">12</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>  <span class="c1"># Gets rows from 12 up to (but not including) 15 and columns 0 up to (but not including) 4 (index is column 0)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>City</th>
+      <th>Birth Year</th>
+      <th>Favorite Color</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12</th>
+      <td>Mia</td>
+      <td>New York</td>
+      <td>1995</td>
+      <td>Green</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Noah</td>
+      <td>Paris</td>
+      <td>1982</td>
+      <td>Blue</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Olivia</td>
+      <td>Tokyo</td>
+      <td>1990</td>
+      <td>Indigo</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>In this example dataframe, the “index” column (column 0) is numeric. If you have some separate column with unique values, for example names, you can also set that to be the index column. This then facilitates the use of the <code class="docutils literal notranslate"><span class="pre">loc</span></code> function to access things by names rather than numbers. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">)</span> <span class="c1"># Change the index column to be the &quot;Name Column&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Olivia&#39;</span><span class="p">,</span><span class="s1">&#39;Favorite Color&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Indigo&#39;
+</pre></div>
+</div>
+</div>
+</div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="to-add-iloc-and-loc">
-<h1>TO ADD: iloc and loc<a class="headerlink" href="#to-add-iloc-and-loc" title="Link to this heading">#</a></h1>
 <section id="plotting-data-from-a-pandas-dataframe">
 <h2>Plotting data from a Pandas dataframe<a class="headerlink" href="#plotting-data-from-a-pandas-dataframe" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -2109,7 +2268,6 @@ Name: Birth Year, dtype: bool
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Name</th>
       <th>City</th>
       <th>Birth Year</th>
       <th>Favorite Color</th>
@@ -2122,11 +2280,24 @@ Name: Birth Year, dtype: bool
       <th>Number of Children</th>
       <th>Height (m)</th>
     </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>Alice</td>
+      <th>Alice</th>
       <td>New York</td>
       <td>1990</td>
       <td>Blue</td>
@@ -2140,8 +2311,7 @@ Name: Birth Year, dtype: bool
       <td>1.65</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>Bob</td>
+      <th>Bob</th>
       <td>London</td>
       <td>1985</td>
       <td>Green</td>
@@ -2155,8 +2325,7 @@ Name: Birth Year, dtype: bool
       <td>1.80</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>Charlie</td>
+      <th>Charlie</th>
       <td>Paris</td>
       <td>1992</td>
       <td>Red</td>
@@ -2170,8 +2339,7 @@ Name: Birth Year, dtype: bool
       <td>1.70</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>David</td>
+      <th>David</th>
       <td>Tokyo</td>
       <td>1988</td>
       <td>Indigo</td>
@@ -2185,8 +2353,7 @@ Name: Birth Year, dtype: bool
       <td>1.75</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>Eve</td>
+      <th>Eve</th>
       <td>New York</td>
       <td>1991</td>
       <td>Violet</td>
@@ -2200,8 +2367,7 @@ Name: Birth Year, dtype: bool
       <td>1.60</td>
     </tr>
     <tr>
-      <th>5</th>
-      <td>Frank</td>
+      <th>Frank</th>
       <td>Berlin</td>
       <td>1983</td>
       <td>Orange</td>
@@ -2215,8 +2381,7 @@ Name: Birth Year, dtype: bool
       <td>1.85</td>
     </tr>
     <tr>
-      <th>6</th>
-      <td>Grace</td>
+      <th>Grace</th>
       <td>London</td>
       <td>1987</td>
       <td>Yellow</td>
@@ -2230,8 +2395,7 @@ Name: Birth Year, dtype: bool
       <td>1.68</td>
     </tr>
     <tr>
-      <th>7</th>
-      <td>Heidi</td>
+      <th>Heidi</th>
       <td>Paris</td>
       <td>1994</td>
       <td>Blue</td>
@@ -2245,8 +2409,7 @@ Name: Birth Year, dtype: bool
       <td>1.63</td>
     </tr>
     <tr>
-      <th>8</th>
-      <td>Ivan</td>
+      <th>Ivan</th>
       <td>New York</td>
       <td>1980</td>
       <td>Green</td>
@@ -2260,8 +2423,7 @@ Name: Birth Year, dtype: bool
       <td>1.78</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>Judy</td>
+      <th>Judy</th>
       <td>Tokyo</td>
       <td>1989</td>
       <td>Red</td>
@@ -2275,8 +2437,7 @@ Name: Birth Year, dtype: bool
       <td>1.66</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>Kevin</td>
+      <th>Kevin</th>
       <td>Berlin</td>
       <td>1993</td>
       <td>Orange</td>
@@ -2290,8 +2451,7 @@ Name: Birth Year, dtype: bool
       <td>1.82</td>
     </tr>
     <tr>
-      <th>11</th>
-      <td>Liam</td>
+      <th>Liam</th>
       <td>London</td>
       <td>1986</td>
       <td>Yellow</td>
@@ -2305,8 +2465,7 @@ Name: Birth Year, dtype: bool
       <td>1.72</td>
     </tr>
     <tr>
-      <th>12</th>
-      <td>Mia</td>
+      <th>Mia</th>
       <td>New York</td>
       <td>1995</td>
       <td>Green</td>
@@ -2320,8 +2479,7 @@ Name: Birth Year, dtype: bool
       <td>1.69</td>
     </tr>
     <tr>
-      <th>13</th>
-      <td>Noah</td>
+      <th>Noah</th>
       <td>Paris</td>
       <td>1982</td>
       <td>Blue</td>
@@ -2335,8 +2493,7 @@ Name: Birth Year, dtype: bool
       <td>1.76</td>
     </tr>
     <tr>
-      <th>14</th>
-      <td>Olivia</td>
+      <th>Olivia</th>
       <td>Tokyo</td>
       <td>1990</td>
       <td>Indigo</td>
@@ -2350,8 +2507,7 @@ Name: Birth Year, dtype: bool
       <td>1.64</td>
     </tr>
     <tr>
-      <th>15</th>
-      <td>Peter</td>
+      <th>Peter</th>
       <td>Berlin</td>
       <td>1984</td>
       <td>Violet</td>
@@ -2365,8 +2521,7 @@ Name: Birth Year, dtype: bool
       <td>1.87</td>
     </tr>
     <tr>
-      <th>16</th>
-      <td>Quinn</td>
+      <th>Quinn</th>
       <td>London</td>
       <td>1992</td>
       <td>Red</td>
@@ -2380,8 +2535,7 @@ Name: Birth Year, dtype: bool
       <td>1.71</td>
     </tr>
     <tr>
-      <th>17</th>
-      <td>Rahul</td>
+      <th>Rahul</th>
       <td>Mumbai</td>
       <td>1981</td>
       <td>Orange</td>
@@ -2395,8 +2549,7 @@ Name: Birth Year, dtype: bool
       <td>1.79</td>
     </tr>
     <tr>
-      <th>18</th>
-      <td>Mei</td>
+      <th>Mei</th>
       <td>Shanghai</td>
       <td>1990</td>
       <td>Yellow</td>
@@ -2410,8 +2563,7 @@ Name: Birth Year, dtype: bool
       <td>1.62</td>
     </tr>
     <tr>
-      <th>19</th>
-      <td>Sven</td>
+      <th>Sven</th>
       <td>Stockholm</td>
       <td>1987</td>
       <td>Green</td>
@@ -2425,8 +2577,7 @@ Name: Birth Year, dtype: bool
       <td>1.83</td>
     </tr>
     <tr>
-      <th>20</th>
-      <td>Priya</td>
+      <th>Priya</th>
       <td>Mumbai</td>
       <td>1989</td>
       <td>Blue</td>
@@ -2440,8 +2591,7 @@ Name: Birth Year, dtype: bool
       <td>1.67</td>
     </tr>
     <tr>
-      <th>21</th>
-      <td>Arjun</td>
+      <th>Arjun</th>
       <td>Mumbai</td>
       <td>1993</td>
       <td>Indigo</td>
@@ -2455,8 +2605,7 @@ Name: Birth Year, dtype: bool
       <td>1.74</td>
     </tr>
     <tr>
-      <th>22</th>
-      <td>Giuseppe</td>
+      <th>Giuseppe</th>
       <td>Rome</td>
       <td>1986</td>
       <td>Violet</td>
@@ -2483,195 +2632,38 @@ Name: Birth Year, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">35</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Make a copy of the dataframe with only selected columns -and- rename some columns</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span><span class="s1">&#39;City&#39;</span><span class="p">,</span><span class="s1">&#39;Height (m)&#39;</span><span class="p">,</span> <span class="s1">&#39;Birth Year&#39;</span><span class="p">]</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Birth Year&#39;</span><span class="p">:</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span><span class="s1">&#39;Height (m)&#39;</span><span class="p">:</span><span class="s1">&#39;Height&#39;</span><span class="p">})</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">df2</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+<span class="nn">File ~/opt/anaconda3/envs/jupyter-book/lib/python3.13/site-packages/pandas/core/frame.py:4113,</span> in <span class="ni">DataFrame.__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4111</span>     <span class="k">if</span> <span class="n">is_iterator</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">4112</span>         <span class="n">key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">4113</span>     <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">_get_indexer_strict</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s2">&quot;columns&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">4115</span> <span class="c1"># take() does not accept boolean indexers</span>
+<span class="g g-Whitespace">   </span><span class="mi">4116</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="s2">&quot;dtype&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="nb">bool</span><span class="p">:</span>
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Name</th>
-      <th>City</th>
-      <th>Height</th>
-      <th>Year</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Alice</td>
-      <td>New York</td>
-      <td>1.65</td>
-      <td>1990</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Bob</td>
-      <td>London</td>
-      <td>1.80</td>
-      <td>1985</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Charlie</td>
-      <td>Paris</td>
-      <td>1.70</td>
-      <td>1992</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>David</td>
-      <td>Tokyo</td>
-      <td>1.75</td>
-      <td>1988</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Eve</td>
-      <td>New York</td>
-      <td>1.60</td>
-      <td>1991</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Frank</td>
-      <td>Berlin</td>
-      <td>1.85</td>
-      <td>1983</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Grace</td>
-      <td>London</td>
-      <td>1.68</td>
-      <td>1987</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>Heidi</td>
-      <td>Paris</td>
-      <td>1.63</td>
-      <td>1994</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>Ivan</td>
-      <td>New York</td>
-      <td>1.78</td>
-      <td>1980</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>Judy</td>
-      <td>Tokyo</td>
-      <td>1.66</td>
-      <td>1989</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Kevin</td>
-      <td>Berlin</td>
-      <td>1.82</td>
-      <td>1993</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Liam</td>
-      <td>London</td>
-      <td>1.72</td>
-      <td>1986</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Mia</td>
-      <td>New York</td>
-      <td>1.69</td>
-      <td>1995</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Noah</td>
-      <td>Paris</td>
-      <td>1.76</td>
-      <td>1982</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Olivia</td>
-      <td>Tokyo</td>
-      <td>1.64</td>
-      <td>1990</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Peter</td>
-      <td>Berlin</td>
-      <td>1.87</td>
-      <td>1984</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Quinn</td>
-      <td>London</td>
-      <td>1.71</td>
-      <td>1992</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Rahul</td>
-      <td>Mumbai</td>
-      <td>1.79</td>
-      <td>1981</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>Mei</td>
-      <td>Shanghai</td>
-      <td>1.62</td>
-      <td>1990</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Sven</td>
-      <td>Stockholm</td>
-      <td>1.83</td>
-      <td>1987</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Priya</td>
-      <td>Mumbai</td>
-      <td>1.67</td>
-      <td>1989</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>Arjun</td>
-      <td>Mumbai</td>
-      <td>1.74</td>
-      <td>1993</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>Giuseppe</td>
-      <td>Rome</td>
-      <td>1.77</td>
-      <td>1986</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="nn">File ~/opt/anaconda3/envs/jupyter-book/lib/python3.13/site-packages/pandas/core/indexes/base.py:6212,</span> in <span class="ni">Index._get_indexer_strict</span><span class="nt">(self, key, axis_name)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6209</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">6210</span>     <span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">new_indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_non_unique</span><span class="p">(</span><span class="n">keyarr</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">6212</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raise_if_missing</span><span class="p">(</span><span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">axis_name</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6214</span> <span class="n">keyarr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">indexer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6215</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">Index</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">6216</span>     <span class="c1"># GH 42790 - Preserve name from an Index</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/jupyter-book/lib/python3.13/site-packages/pandas/core/indexes/base.py:6264,</span> in <span class="ni">Index._raise_if_missing</span><span class="nt">(self, key, indexer, axis_name)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6261</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;None of [</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">] are in the [</span><span class="si">{</span><span class="n">axis_name</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6263</span> <span class="n">not_found</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ensure_index</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="n">missing_mask</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="ne">-&gt; </span><span class="mi">6264</span> <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">not_found</span><span class="si">}</span><span class="s2"> not in index&quot;</span><span class="p">)</span>
+
+<span class="ne">KeyError</span>: &quot;[&#39;Name&#39;] not in index&quot;
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="creating-and-modifying-dataframes">
@@ -2942,10 +2934,11 @@ Name: Birth Year, dtype: bool
 </li>
 <li><p>Understand if the data is complete or if some elements are missing</p>
 <ul>
-<li><p>Use functions like ``df[‘foo’].value_counts(), df.isna().sum() for c</p></li>
-<li></li>
+<li><p>Use functions like <code class="docutils literal notranslate"><span class="pre">df['foo'].value_counts()</span></code>, <code class="docutils literal notranslate"><span class="pre">df.isna().sum()</span></code></p></li>
+<li><p>Consider dropping or recategorizing data with special or missing data (though be careful as sometimes those are the interesting cases!)</p></li>
 </ul>
 </li>
+<li><p>Make plots of numerical data, both individual columns as well as correlations, to understand better the basic distributions, ranges, etc.</p></li>
 </ul>
 </section>
 </section>
@@ -3015,20 +3008,14 @@ Name: Birth Year, dtype: bool
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Pandas</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-a-dataframe-and-display-it">Read in a dataframe and display it</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utility-functions-to-get-an-overview-of-the-data-in-the-dataframe">Utility functions to get an overview of the data in the dataframe</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subsets-of-a-dataframe">Subsets of a Dataframe</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#to-add-iloc-and-loc">TO ADD: iloc and loc</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-specific-dataframe-parts-iloc-and-loc">Accessing specific dataframe parts - iloc and loc</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-data-from-a-pandas-dataframe">Plotting data from a Pandas dataframe</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-and-modifying-dataframes">Creating and Modifying Dataframes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-understand-a-dataset-you-load-in-pandas">How to understand a dataset you load in Pandas</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>

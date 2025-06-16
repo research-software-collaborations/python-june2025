@@ -95,6 +95,39 @@ git commit -m "CHANGED SEVERAL THINGS"
 git push
 ```
 
+## Checking the status of your local repository
+
+It is often useful to see which files you have modified in your "local" 
+repository (i.e. in the BinderHub instance or on your laptop), which files
+you have already ``add``-ed for commit, etc. You can do this using the
+``git status`` command. For example, in the repo where I am writing these
+instructions, the status after changing this file is:
+
+```
+mbp> git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   991-github-use.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	some-other-file.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+(jupyter-book) mbp>
+```
+
+In this case 991-github-use.md is a file already known to the repository,
+but I have made new local changes that are not yet committed. There is
+also a new and unknown to the repository file called "some-other-file.md".
+In both cases, one can use the ``git add`` command to stage them for 
+committing (followed by the ``git commit`` and ``git push`` commands as
+above).
+
 ## Temporary and Cache Files 
 
 While you are working with Python and Jupyter some files may be created 

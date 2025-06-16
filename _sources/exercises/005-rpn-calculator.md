@@ -1,7 +1,7 @@
 # 005 - Reverse Polish Notation (RPN) Calculator
 
 In this exercise you will implement a simple RPN calculator similar to
-the unix 'dc' command.
+the 'dc' command usually available on Linux and other Unix variants.
 
 See the [Wikipedia page](https://en.wikipedia.org/wiki/Reverse_Polish_notation)
 for full information on the syntax.
