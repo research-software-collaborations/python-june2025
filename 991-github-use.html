@@ -410,6 +410,7 @@
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-git-and-github">Overview of Git and GitHub</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-and-github-in-practice">Git and GitHub In Practice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temporary-and-cache-files">Temporary and Cache Files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-information">Further Information</a></li>
 </ul>
             </nav>
@@ -509,6 +510,21 @@ local copy of the Git repo, you can do:</p>
 </pre></div>
 </div>
 </section>
+<section id="temporary-and-cache-files">
+<h2>Temporary and Cache Files<a class="headerlink" href="#temporary-and-cache-files" title="Link to this heading">#</a></h2>
+<p>While you are working with Python and Jupyter some files may be created
+that are temporary and do not need to be added to the repository in
+GitHub. For example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.ipynb_checkpoints</span></code> - this directory is used by Jupyter to store checkpoints of your work in Jupyter while you are working and before you have explicitly saved the notebook.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__pycache__</span></code> - this directory may be created by the Python interpreter when you run python scripts. It stores Python “bytecode” from imported modules, which allows them to run faster.</p></li>
+</ul>
+<p>In general these are temporary directories which will be recreated by Jupyter and Python as needed. You can ignore them, but you should avoid <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code>-ing them and pushing them to your GitHub repository. (It is easy to accidentally do this if you use the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code> command. To avoid that, you can create (and add/commit/push to your repository!) a file called “.gitignore” with the following contents:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">ipynb_checkpoints</span>
+<span class="n">__pycache__</span>
+</pre></div>
+</div>
+</section>
 <section id="further-information">
 <h2>Further Information<a class="headerlink" href="#further-information" title="Link to this heading">#</a></h2>
 <p>For more information and a bit of a deeper dive into things you can do
@@ -578,6 +594,7 @@ with git, see websites like:</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-git-and-github">Overview of Git and GitHub</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-and-github-in-practice">Git and GitHub In Practice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temporary-and-cache-files">Temporary and Cache Files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-information">Further Information</a></li>
 </ul>
   </nav></div>

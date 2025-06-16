@@ -95,6 +95,21 @@ git commit -m "CHANGED SEVERAL THINGS"
 git push
 ```
 
+## Temporary and Cache Files 
+
+While you are working with Python and Jupyter some files may be created 
+that are temporary and do not need to be added to the repository in 
+GitHub. For example:
+
+  * ``.ipynb_checkpoints`` - this directory is used by Jupyter to store checkpoints of your work in Jupyter while you are working and before you have explicitly saved the notebook.
+  * ``__pycache__`` - this directory may be created by the Python interpreter when you run python scripts. It stores Python "bytecode" from imported modules, which allows them to run faster.
+
+In general these are temporary directories which will be recreated by Jupyter and Python as needed. You can ignore them, but you should avoid ``git add``-ing them and pushing them to your GitHub repository. (It is easy to accidentally do this if you use the ``git add .`` command. To avoid that, you can create (and add/commit/push to your repository!) a file called ".gitignore" with the following contents:
+
+```
+.ipynb_checkpoints
+__pycache__
+```
 
 ## Further Information
 
