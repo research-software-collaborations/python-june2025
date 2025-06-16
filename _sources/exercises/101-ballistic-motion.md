@@ -19,6 +19,8 @@ resulting plot should look something like:
  
  * plot ballistic motion (for various angles) with a round obstacle at some position in the sky, check if the object hits the obstacle and interrupt the trajectory at that point if it does
 
+<!--
 **Exercise 4:**
  
  * animate ballistic motion
+-->
