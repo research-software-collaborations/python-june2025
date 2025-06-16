@@ -416,6 +416,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays-of-different-shapes">Arrays of different shapes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-subsets-of-numpy-arrays-slicing">Accessing subsets of Numpy Arrays - “Slicing”</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing-with-lists-and-strings">Slicing with lists and strings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#masks">Masks</a></li>
 </ul>
             </nav>
         </div>
@@ -599,7 +600,7 @@ then a useful path to do more sophisticated things. For simplicity in this quick
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x112737110&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x113ef7110&gt;]
 </pre></div>
 </div>
 <img alt="_images/37f815744aedcfdaccec790b585cdaf673ec6c623c27d27a7cfb74faa0f2522e.png" src="_images/37f815744aedcfdaccec790b585cdaf673ec6c623c27d27a7cfb74faa0f2522e.png" />
@@ -816,6 +817,80 @@ arbadacarbA
 </div>
 </div>
 </section>
+<section id="masks">
+<h2>Masks<a class="headerlink" href="#masks" title="Link to this heading">#</a></h2>
+<p>Once you have a numpy array, it is also possible to select elements according to some boolean condition.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">a</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">]</span>   <span class="c1"># Select only elments whose value is greater than 5</span>
+<span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 6,  7,  8,  9, 10])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The use of conditionals with Numpy arrays actually returns an array of boolean values whose indices correspond to the original array. A useful trick is to save this in a variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">5</span>
+<span class="n">mask</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False, False, False, False, False,  True,  True,  True,
+        True,  True])
+</pre></div>
+</div>
+</div>
+</div>
+<p>This mask can be use as the original condition was used (though as a variable it is more flexible):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+<span class="n">c</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 6,  7,  8,  9, 10])
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also use the mask to choose some elements of the array for assignment. A very useful feature is that the syntax <code class="docutils literal notranslate"><span class="pre">~mask</span></code> can also be used to chose the logical <code class="docutils literal notranslate"><span class="pre">not</span></code> of the mask. So here for example one can use the <code class="docutils literal notranslate"><span class="pre">mask</span></code> to set elements greater than 5 to 5 and the <code class="docutils literal notranslate"><span class="pre">~mask</span></code> to set the other elements to 0.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="o">~</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">a</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -888,6 +963,7 @@ arbadacarbA
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays-of-different-shapes">Arrays of different shapes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-subsets-of-numpy-arrays-slicing">Accessing subsets of Numpy Arrays - “Slicing”</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing-with-lists-and-strings">Slicing with lists and strings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#masks">Masks</a></li>
 </ul>
   </nav></div>
 
