@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -422,6 +422,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-and-github-in-practice">Git and GitHub In Practice</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-the-status-of-your-local-repository">Checking the status of your local repository</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temporary-and-cache-files">Temporary and Cache Files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fork">Fork</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-information">Further Information</a></li>
 </ul>
             </nav>
@@ -567,6 +568,36 @@ GitHub. For example:</p>
 </pre></div>
 </div>
 </section>
+<section id="fork">
+<h2>Fork<a class="headerlink" href="#fork" title="Link to this heading">#</a></h2>
+<p>Most of the times, you might have to work together with other people on a wider
+project. In these cases, it is useful to create your own copy of the repo on the
+cloud, which can track changes in the central one. This procedure is called
+<strong>forking</strong>.</p>
+<p>To create a fork of a repo, press the “fork” button on the top of the webpage.</p>
+<p><img alt="GitHub 2" src="_images/fork_initial.png" /></p>
+<p>Now, your own copy of the initial repo is available in your list of
+repositories.</p>
+<p><img alt="GitHub 2" src="_images/fork_end.png" /></p>
+<p>You can now clone with the usual procedure.</p>
+<p>If you want to locally track the changes that happen in the central repository,
+you can add it as a remote to your local copy:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">upstream</span> <span class="o">&lt;</span><span class="n">link_to_central_repo</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>You can show the list of remotes with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">remote</span> <span class="o">-</span><span class="n">v</span>
+</pre></div>
+</div>
+<p>In this case, it will show</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">origin</span>	<span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">maxgalli</span><span class="o">/</span><span class="n">particle</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">fetch</span><span class="p">)</span>
+<span class="n">origin</span>	<span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">maxgalli</span><span class="o">/</span><span class="n">particle</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">push</span><span class="p">)</span>
+<span class="n">upstream</span>	<span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">scikit</span><span class="o">-</span><span class="n">hep</span><span class="o">/</span><span class="n">particle</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">fetch</span><span class="p">)</span>
+<span class="n">upstream</span>	<span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">scikit</span><span class="o">-</span><span class="n">hep</span><span class="o">/</span><span class="n">particle</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">push</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">origin</span></code> is your fork, while <code class="docutils literal notranslate"><span class="pre">upstream</span></code> points to the central repo.</p>
+</section>
 <section id="further-information">
 <h2>Further Information<a class="headerlink" href="#further-information" title="Link to this heading">#</a></h2>
 <p>For more information and a bit of a deeper dive into things you can do
@@ -638,6 +669,7 @@ with git, see websites like:</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-and-github-in-practice">Git and GitHub In Practice</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-the-status-of-your-local-repository">Checking the status of your local repository</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temporary-and-cache-files">Temporary and Cache Files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fork">Fork</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-information">Further Information</a></li>
 </ul>
   </nav></div>
